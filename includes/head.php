@@ -22,6 +22,7 @@
 	  if (!empty($options['primary_link_hover']) ) { echo "  .btn-default:hover { border-color: ".$options['primary_link_hover']." }\n\t"; }
 	  ?>
   </style>
+  <?php wp_head(); ?>
 </head>
 
 <body>
