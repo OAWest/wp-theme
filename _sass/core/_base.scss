@@ -1,0 +1,200 @@
+/**
+ * Body
+ */
+html, body {
+ height: 100%;
+ overflow-x: hidden;
+ -webkit-overflow-scrolling: touch;
+}
+body {
+  padding-top: $navbar-height;
+}
+
+/**
+ * Anchors
+ */
+a {
+  -moz-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  -webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  -o-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  -ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  text-decoration: none;
+  border-bottom: dotted 1px;
+  color: #ffad33;
+
+  &:hover {
+    text-decoration: none;
+    border-bottom-color: transparent;
+  }
+}
+
+
+/**
+ *  AngularJS Cloaking
+ */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+  display: none !important;
+}
+
+
+/**
+ *  Angular UI Bootstrap
+ */
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer;
+}
+
+
+/**
+ * Buttons
+ */
+.btn {
+  @include transition(background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease);
+}
+
+
+/**
+ * Font
+ */
+body, input, select, textarea {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  line-height: 1.75em;
+}
+
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+  color: inherit;
+  font-weight: 300;
+  line-height: 1.25em;
+  margin: 1em 0;
+  text-transform: uppercase;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    border: 0;
+  }
+}
+
+h1 {
+  line-height: 1.75em;
+}
+
+h2 {
+  margin: 1.25em 0 1em;
+}
+header.divider {
+  text-align: center;
+
+  h3 {
+    margin-bottom: ($padding-base-vertical * 4);
+    font-size: 2rem;
+    letter-spacing: 1.33px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.42857143;
+    text-transform: uppercase;
+    color: rgba(104,110,120,0.5);
+
+    span {
+      display: inline-block;
+      position: relative;
+
+      &::before, &::after {
+        display: block;
+        position: absolute;
+        width: 150%;
+        height: 1px;
+        top: 50%;
+        background-color: rgba(175,178,183,0.5);
+        content: "";
+        margin-top: -1px;
+      }
+
+      &::before {
+        right: 100%;
+        margin-right: 25px;
+      }
+
+      &::after {
+        left: 100%;
+        margin-left: 25px;
+      }
+    }
+  }
+}
+
+
+/**
+ * Images
+ */
+.img-thumbnail {
+  margin: ($padding-base-vertical * 2) $padding-base-vertical;
+}
+
+
+/**
+ * List groups
+ */
+.list-group {
+  > .list-group-item {
+    > .fa.fa-chevron-right {
+      float: right;
+      padding-top: 5px;
+    }
+  }
+}
+
+/**
+ * Loading indicator
+ */
+section.loading {
+  min-height: 100%;
+  text-align: center;
+  font-size: $font-size-h1;
+  @include vcenter-block();
+}
+
+
+/**
+ * Pagination
+ */
+.pagination {
+  margin: ($padding-base-vertical * 10) ($padding-base-horizontal * 4);
+  text-align: center;
+  display: block;
+  text-align: center;
+
+  ul {
+    margin: 0 auto;
+    list-style: none;
+  }
+
+  li {
+    padding-left: $padding-base-horizontal;
+    padding-right: $padding-base-horizontal;
+    list-style-type: none;
+    display: inline;
+  }
+
+  .current-page {
+    font-weight: 600;
+  }
+}
+
+/**
+ * Paragraphs
+ */
+strong, b {
+  font-weight: bold;
+}
+
+p, ul, ol, dl, table, blockquote {
+  margin: 0 0 2em 0;
+}
