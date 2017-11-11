@@ -9,7 +9,7 @@
                 <h1 class="post-title" itemprop="name headline">404 Error</h1>
 				<div class="post-content" itemprop="articleBody">
 					Unfortunately, we cannot find the page you are looking for.<br />
-					Please press the back button on your browser, or <a href="http://sectionw1n.org">click here</a> to return to the homepage.<br />
+					Please press the back button on your browser, or <a href="/">click here</a> to return to the homepage.<br />
 					<br />
 					Here are some of our more recent posts instead:<br />
 					<?php wp_get_archives( array( 'type' => 'postbypost', 'limit' => 5, 'format' => 'custom', 'before' => '', 'after' => '<br />' ) ); ?>
