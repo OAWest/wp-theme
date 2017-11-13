@@ -48,7 +48,7 @@
 			'menu_class'      => 'nav navbar-nav navbar-right',
 			'menu_id'         => '',
 			'echo'            => true,
-			'fallback_cb'     => 'wp_page_menu',
+			'fallback_cb'     => 'false',
 			'before'          => '',
 			'after'           => '',
 			'link_before'     => '',
@@ -57,8 +57,9 @@
 			'depth'           => 1,
 			'walker'          => ''
 		);
-		 
+		
 		wp_nav_menu( $defaults );
+		//<ul id="menu-main" class="nav navbar-nav navbar-right">
 		?>
 
     <div id="navbar" class="sidenav">
@@ -85,3 +86,13 @@
     </script>
   </div>
 </nav>
+
+<?php
+	// If this is the first index page, include the following
+	if (is_front_page()) {
+		require_once('banner.php'); // Include the header banner
+		echo "<main class=\"index\">";
+		require_once('sidebar.php'); // Iteriate through the sticky posts
+	}
+	else {echo "<main class=\"index\">";}
+?>

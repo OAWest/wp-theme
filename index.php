@@ -1,14 +1,22 @@
 <?php
-	require_once('includes/head.php'); // Include the head info
-	
-	// If this is the first index page, include the following
-	if ( !is_paged() ) {
-		require_once('includes/header.php'); // Include the header banner
-		echo "<main class=\"index\">";
-		require_once('includes/sidebar.php'); // Iteriate through the sticky posts
-	}
-	else {echo "<main class=\"index\">";}
-?>
+/**
+ * The main template file
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
+ *
+ * @link http://western.oa-bsa.org/
+ *
+ * @package WordPress
+ * @subpackage WR
+ * @since 1.0
+ * @version 2.0
+ */
+
+get_header(); ?>
+
   <section class="posts">
   <header class="divider">
       <h3><span><?php echo get_bloginfo( 'name' ); ?> News</span></h3>
@@ -46,4 +54,4 @@
 		<?php endwhile; else: ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 
-<?php require_once('includes/footer.php'); ?>
+<?php require_once('footer.php'); ?>

@@ -22,7 +22,7 @@ function govpress_customize_register( $wp_customize ) {
 
 	// Add a header logo image control option
 	$wp_customize->add_setting( 'header_logo', array(
-		'default' => get_bloginfo('template_directory') . '/images/default-logo.png',
+		'default' => get_bloginfo('template_directory') . '/images/logos/western-region-white.png',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'header_logo', array(
 	
@@ -33,7 +33,7 @@ function govpress_customize_register( $wp_customize ) {
 	
 	// Add a nav logo image control option
 	$wp_customize->add_setting( 'nav_logo', array(
-		'default' => get_bloginfo('template_directory') . '/images/default-logo.png',
+		'default' => get_bloginfo('template_directory') . '/images/logos/western-region.png',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'nav_logo', array(
 	
@@ -44,7 +44,7 @@ function govpress_customize_register( $wp_customize ) {
 	
 	// Add a header background image control option
 	$wp_customize->add_setting( 'header_background', array(
-		'default' => get_bloginfo('template_directory') . '/images/default-logo.png',
+		'default' => get_bloginfo('template_directory') . '/images/banners/mountains.jpg',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'header_background', array(
 	
@@ -284,43 +284,48 @@ function clean_custom_menu( $theme_location ) {
  
         $count = 0;
         $submenu = false;
-         
-        foreach( $menu_items as $menu_item ) {
-             
-            $link = $menu_item->url;
-            $title = $menu_item->title;
-             
-            if ( !$menu_item->menu_item_parent ) {
-                $parent_id = $menu_item->ID;
-                 
-                $menu_list .= '<div class="col-xs-12 col-sm-4 col-md-2 grid-item">'."\n";
-				$menu_list .= "\t".'<h4><a href="'.$link.'" class="title">'.$title.'</a></h4>' ."\n";
-            }
- 
-            if ( $parent_id == $menu_item->menu_item_parent ) {
- 
-                if ( !$submenu ) {
-                    $submenu = true;
-                    $menu_list .= "\t".'<nav>'."\n\t\t".'<ul class="list-unstyled">' ."\n";
-                }
- 
-                $menu_list .= "\t\t\t".'<li class="item"><a href="'.$link.'" class="title">'.$title.'</a></li>' ."\n";
-                     
- 
-                if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id && $submenu ){
-                    $menu_list .= "\t\t".'</ul>'."\n\t".'</nav>'."\n";
-                    $submenu = false;
-                }
- 
-            }
- 
-            if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id ) { 
-                $menu_list .= '</div>' ."\n";      
-                $submenu = false;
-            }
- 
-            $count++;
-        }
+        
+		if(!empty($menu_item)){
+			foreach( $menu_items as $menu_item ) {
+				 
+				$link = $menu_item->url;
+				$title = $menu_item->title;
+				 
+				if ( !$menu_item->menu_item_parent ) {
+					$parent_id = $menu_item->ID;
+					 
+					$menu_list .= '<div class="col-xs-12 col-sm-4 col-md-2 grid-item">'."\n";
+					$menu_list .= "\t".'<h4><a href="'.$link.'" class="title">'.$title.'</a></h4>' ."\n";
+				}
+	 
+				if ( $parent_id == $menu_item->menu_item_parent ) {
+	 
+					if ( !$submenu ) {
+						$submenu = true;
+						$menu_list .= "\t".'<nav>'."\n\t\t".'<ul class="list-unstyled">' ."\n";
+					}
+	 
+					$menu_list .= "\t\t\t".'<li class="item"><a href="'.$link.'" class="title">'.$title.'</a></li>' ."\n";
+						 
+	 
+					if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id && $submenu ){
+						$menu_list .= "\t\t".'</ul>'."\n\t".'</nav>'."\n";
+						$submenu = false;
+					}
+	 
+				}
+	 
+				if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id ) { 
+					$menu_list .= '</div>' ."\n";      
+					$submenu = false;
+				}
+	 
+				$count++;
+			}
+		}
+		else {
+			$menu_list = '<!-- no menu defined in location "'.$theme_location.'" -->';
+		}
  
     } else {
         $menu_list = '<!-- no menu defined in location "'.$theme_location.'" -->';

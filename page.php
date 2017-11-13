@@ -1,4 +1,4 @@
-<?php require_once('includes/head.php'); ?>
+<?php require_once('header.php'); ?>
 <main class="post">
     <div class="container">
       <div class="row">
@@ -27,4 +27,4 @@
 		<?php endwhile; else: ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
 		
-<?php require_once('includes/footer.php'); ?>
+<?php require_once('footer.php'); ?>
