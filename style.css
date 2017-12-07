@@ -5809,15 +5809,15 @@ button.close {
   .hidden-print {
     display: none !important; } }
 /*!
- *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
- *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ *  Font Awesome 4.7.0 by @davegandy - https://fontawesome.io - @fontawesome
+ *  License - https://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
  */
 /* FONT PATH
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url("//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?v=4.7.0");
-  src: url("//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
+  src: url("https://netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?v=4.7.0");
+  src: url("https://netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("https://netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("https://netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("https://netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("https://netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 .fa {
@@ -8673,5 +8673,51 @@ main.post {
       main.post .container .row .panel.post .panel-footer a {
         color: #999;
         border-color: transparent; }
+		
+		
+/**
+* Sections List Page
+*/
+.key-three, .leadership, .section-lodges {
+  margin-bottom: 48px; }
+  .key-three .row .chief, .key-three .row .adviser, .key-three .row .staff-adviser, .leadership .row .chief, .leadership .row .adviser, .leadership .row .staff-adviser, .section-lodges .row .chief, .section-lodges .row .adviser, .section-lodges .row .staff-adviser {
+    text-align: center; }
+    .key-three .row .chief img, .key-three .row .adviser img, .key-three .row .staff-adviser img, .leadership .row .chief img, .leadership .row .adviser img, .leadership .row .staff-adviser img, .section-lodges .row .chief img, .section-lodges .row .adviser img, .section-lodges .row .staff-adviser img {
+      max-height: 200px; }
+  .key-three .row .panel .list-group .list-group-item .contact, .leadership .row .panel .list-group .list-group-item .contact, .section-lodges .row .panel .list-group .list-group-item .contact {
+    float: right; }
 
-/*# sourceMappingURL=main.css.map */
+.online {
+  margin-bottom: 24px; }
+  .online .row .btn {
+    display: block; }
+    .online .row .btn .fa {
+      font-size: 30px;
+      display: block;
+      margin: 12px auto; }
+
+/**
+* Leadership Page
+*/
+.post .container .row .key-three {
+  padding: 15px;
+  background-color: #cc3c2f; }
+  .post .container .row .key-three a, .post .container .row .key-three p {
+    color: #fff; }
+  .post .container .row .key-three h2, .post .container .row .key-three h3 {
+    color: #fff;
+    font-weight: bold; }
+  .post .container .row .key-three h2 {
+    margin-bottom: 0px; }
+  .post .container .row .key-three h3 {
+    margin-top: 0px; }
+  .post .container .row .key-three .btn {
+    border-color: #fff;
+    color: #fff; }
+  .post .container .row .key-three .btn:hover {
+    background-color: #d86156; }
+	
+	
+.post-title {
+	margin-bottom:0px;
+}

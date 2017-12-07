@@ -8,20 +8,6 @@
   <meta name="description" content="<?php echo get_bloginfo( 'description' ); ?>">
   <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_icon_url();?>">
   <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
-  <style>
-      <?php
-	  $options = get_option( 'govpress', false );
-	  if (!empty(get_theme_mod('header_background' ))) { echo "header.banner.mountains::after {background-image: url(\"";  echo esc_url(get_theme_mod('header_background'))."\"); }\n\t";}
-	  if (!empty(get_theme_mod('nav_logo' ))) { echo ".navbar-fixed-top .container .navbar-header .navbar-brand {background-image: url(\"";  echo esc_url(get_theme_mod('nav_logo'))."\"); }\n\t";}
-	  if (!empty(get_theme_mod('header_logo'))) { echo ".logo-western-region-white {background-image: url(\""; echo esc_url(get_theme_mod('header_logo'))."\"); }\n\t";}
-	  if (!empty($options['primary_color'] ) ) { echo "body { color: ".$options['primary_color']."; }\n\t";}
-	  if (!empty(get_theme_mod('background_color'))){ echo "  body { background-color: #".get_theme_mod('background_color')."; }\n\t"; }
-	  if (!empty($options['primary_link_color']) ) { echo "  a { color: ".$options['primary_link_color']." }\n\t"; }
-	  if (!empty($options['primary_link_color']) ) { echo "  .btn-default { border-color: ".$options['primary_link_color']." }\n\t"; }
-	  if (!empty($options['primary_link_hover']) ) { echo "  a:hover { color: ".$options['primary_link_hover']."; }\n"; }
-	  if (!empty($options['primary_link_hover']) ) { echo "  .btn-default:hover { border-color: ".$options['primary_link_hover']." }\n\t"; }
-	  ?>
-  </style>
   <?php wp_head(); ?>
 </head>
 

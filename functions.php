@@ -6,6 +6,9 @@
 @ini_set( 'max_execution_time', '300' );
 // End Increase the max upload size
 
+//Start Add featured image support
+add_theme_support( 'post-thumbnails' );
+//End Add featured image support
 
 //Start Add additional customizer color options
 function govpress_customize_register( $wp_customize ) {
@@ -87,6 +90,37 @@ function govpress_customize_register( $wp_customize ) {
 	) ) );
 }
 add_action( 'customize_register', 'govpress_customize_register' );
+
+
+//Adding CSS inline style to an existing CSS stylesheet
+function wpb_add_inline_css() {
+	
+	wp_enqueue_style( 'style', plugins_url() . '/style.css' );
+	
+        //All the user input CSS settings as set in the plugin settings
+		$options = get_option( 'govpress', false );
+		$custom_css ="";
+		if (!empty(get_theme_mod('header_background' ))) { $custom_css .= "header.banner.mountains::after {background-image: url(\"".esc_url(get_theme_mod('header_background'))."\"); }\n\t";}
+		if (!empty(get_theme_mod('nav_logo' ))) { $custom_css .= ".navbar-fixed-top .container .navbar-header .navbar-brand {background-image: url(\"".esc_url(get_theme_mod('nav_logo'))."\"); }\n\t";}
+		if (!empty(get_theme_mod('header_logo'))) { $custom_css .= ".logo-western-region-white {background-image: url(\"".esc_url(get_theme_mod('header_logo'))."\"); }\n\t";}
+		if (!empty($options['primary_color'] ) ) { $custom_css .= "body { color: ".$options['primary_color']."; }\n\t";}
+		if (!empty(get_theme_mod('background_color'))){ $custom_css .= "  body { background-color: #".get_theme_mod('background_color')."; }\n\t"; }
+		if (!empty($options['primary_link_color']) ) { $custom_css .= "  a { color: ".$options['primary_link_color']." }\n\t"; }
+		if (!empty($options['primary_link_color']) ) { $custom_css .= "  .btn-default { border-color: ".$options['primary_link_color']." }\n\t"; }
+		if (!empty($options['primary_link_hover']) ) { $custom_css .= "  a:hover { color: ".$options['primary_link_hover']."; }\n"; }
+		if (!empty($options['primary_link_hover']) ) { $custom_css .= "  .btn-default:hover { border-color: ".$options['primary_link_hover']." }\n\t"; }
+		
+  //Add the above custom CSS via wp_add_inline_style
+  wp_add_inline_style( 'style', $custom_css ); //Pass the variable into the main style sheet ID
+  
+  
+}
+add_action( 'wp_enqueue_scripts', 'wpb_add_inline_css' ); //Enqueue the CSS style
+
+add_action('get_header', 'remove_admin_login_header');
+function remove_admin_login_header() {
+	remove_action('wp_head', '_admin_bar_bump_cb');
+}
 // End Add additional customizer color options
 
 
@@ -284,49 +318,43 @@ function clean_custom_menu( $theme_location ) {
  
         $count = 0;
         $submenu = false;
-        
-		if(!empty($menu_item)){
-			foreach( $menu_items as $menu_item ) {
+
+		foreach( $menu_items as $menu_item ) {
+			 
+			$link = $menu_item->url;
+			$title = $menu_item->title;
+			 
+			if ( !$menu_item->menu_item_parent ) {
+				$parent_id = $menu_item->ID;
 				 
-				$link = $menu_item->url;
-				$title = $menu_item->title;
-				 
-				if ( !$menu_item->menu_item_parent ) {
-					$parent_id = $menu_item->ID;
+				$menu_list .= '<div class="col-xs-12 col-sm-4 col-md-2 grid-item">'."\n";
+				$menu_list .= "\t".'<h4><a href="'.$link.'" class="title">'.$title.'</a></h4>' ."\n";
+			}
+ 
+			if ( $parent_id == $menu_item->menu_item_parent ) {
+ 
+				if ( !$submenu ) {
+					$submenu = true;
+					$menu_list .= "\t".'<nav>'."\n\t\t".'<ul class="list-unstyled">' ."\n";
+				}
+ 
+				$menu_list .= "\t\t\t".'<li class="item"><a href="'.$link.'" class="title">'.$title.'</a></li>' ."\n";
 					 
-					$menu_list .= '<div class="col-xs-12 col-sm-4 col-md-2 grid-item">'."\n";
-					$menu_list .= "\t".'<h4><a href="'.$link.'" class="title">'.$title.'</a></h4>' ."\n";
-				}
-	 
-				if ( $parent_id == $menu_item->menu_item_parent ) {
-	 
-					if ( !$submenu ) {
-						$submenu = true;
-						$menu_list .= "\t".'<nav>'."\n\t\t".'<ul class="list-unstyled">' ."\n";
-					}
-	 
-					$menu_list .= "\t\t\t".'<li class="item"><a href="'.$link.'" class="title">'.$title.'</a></li>' ."\n";
-						 
-	 
-					if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id && $submenu ){
-						$menu_list .= "\t\t".'</ul>'."\n\t".'</nav>'."\n";
-						$submenu = false;
-					}
-	 
-				}
-	 
-				if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id ) { 
-					$menu_list .= '</div>' ."\n";      
+ 
+				if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id && $submenu ){
+					$menu_list .= "\t\t".'</ul>'."\n\t".'</nav>'."\n";
 					$submenu = false;
 				}
-	 
-				$count++;
-			}
-		}
-		else {
-			$menu_list = '<!-- no menu defined in location "'.$theme_location.'" -->';
-		}
  
+			}
+ 
+			if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id ) { 
+				$menu_list .= '</div>' ."\n";      
+				$submenu = false;
+			}
+			$count++;
+		}
+
     } else {
         $menu_list = '<!-- no menu defined in location "'.$theme_location.'" -->';
     }

@@ -25,7 +25,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12 copyright">
-        &copy; 2016
+        &copy; <?php echo date('Y'); ?>
       </div>
     </div>
   </div>

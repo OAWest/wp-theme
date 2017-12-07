@@ -15,13 +15,10 @@
 			  ?>
 				<div class="col-xs-12 col-sm-4">
 				  <div class="well">
+				    <center>
 					<h2><a class="post-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-					<div class="post-date date">
-						<time datetime="" itemprop="datePublished">
-							<?php the_time('F jS, Y') ?> <?php edit_post_link('edit', '<a>', '</a>'); ?>
-						</time>
-					 </div>
 					<?php the_content(__('<div class="read-more"><p class="btn btn-block btn-default">Read More</p></div>')); ?>
+					</center>
 				  </div>
 				</div>
 				
