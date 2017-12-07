@@ -4,11 +4,9 @@ Welcome to the public repository for the Western Region, Order of the Arrow Word
 
 ## To Do:
 
-The WordPress theme is currently a working Beta. Before it is launched formally, there are several changes that need to be made:
-
-* Slimmed CSS from main website
-* Necessiary WordPress headers in CSS file
-* Functions.php should be checked for errors
+* Seperate Bootstrap/Fontawesome CSS from the main stylesheet
+* Fix navigation menus, so there is a separation from header and footer
+* Header background image upload at a smaller resolution
 
 ## Fork Us
 
