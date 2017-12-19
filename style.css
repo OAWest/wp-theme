@@ -1,3 +1,16 @@
+/*
+Theme Name: WR
+Theme URI: https://github.com/OAWest/wp-theme
+Author: Western Region, Order of the Arrow
+Author URI: http://western.oa-bsa.org/
+Description: Designed for use by the Western Region, Order of the Arrow, and its sections.
+Version: 2.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: WR
+Tags: one-column, two-columns, flexible-header, accessibility-ready, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments
+*/
+
 @charset "UTF-8";
 /*import core libraries and sass code */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic);
@@ -8635,6 +8648,54 @@ a.banner {
       padding-top: 15px; }
       .navbar-fixed-top .container .sidenav a {
         font-size: 18px; } }
+
+
+/**
+ * Home page
+ */
+main.index section.highlights {
+  margin: 48px 0;
+  text-align: center; }
+  main.index section.highlights .container .row h4 {
+    height: 60px;
+    margin: 12px 0; }
+  main.index section.highlights .container .row .visual {
+    margin: 6px auto;
+    display: block;
+    text-align: center; }
+    main.index section.highlights .container .row .visual .logo-nls, main.index section.highlights .container .row .visual .logo-dylc {
+      margin: 0 auto;
+      background-size: contain; }
+    main.index section.highlights .container .row .visual .logo-dylc {
+      height: 60px;
+      width: 242px;
+      padding-bottom: 15px; }
+    main.index section.highlights .container .row .visual .chief {
+      height: 100%;
+      width: 100%;
+      max-height: 250px;
+      max-width: 250px; }
+main.index section.posts {
+  margin: 48px 0; }
+  main.index section.posts .container .row .panel.post {
+    background: #fff; }
+    main.index section.posts .container .row .panel.post .panel-body {
+      padding: 12px 24px; }
+      main.index section.posts .container .row .panel.post .panel-body h2 {
+        margin-top: 0;
+        margin-bottom: 0; }
+      main.index section.posts .container .row .panel.post .panel-body .post-date {
+        text-transform: uppercase;
+        color: #999;
+        font-weight: 400;
+        font-size: 11px;
+        margin: 12px 0; }
+@media (min-width: 768px) {
+  main.index section.highlights {
+    margin: 72px 0; }
+  main.index section.posts {
+margin: 72px 0; } }
+
 
 /**
  * A single post
