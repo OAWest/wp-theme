@@ -361,4 +361,14 @@ function clean_custom_menu( $theme_location ) {
     echo $menu_list;
 }
 // End Footer Nav Walker
+
+// Add scripts to wp_footer()
+function child_theme_footer_script() {
+	show_admin_bar( false );
+	require_once('footer.php');
+}
+add_action( 'wp_footer', 'child_theme_footer_script' );
+
+
+
 ?>
