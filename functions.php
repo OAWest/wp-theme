@@ -1,5 +1,19 @@
 <?php
 
+function start_wp_head_buffer() {
+    ob_start();
+}
+add_action('wp_head','start_wp_head_buffer',0);
+
+function end_wp_head_buffer() {
+    $in = ob_get_clean();
+
+    // here do whatever you want with the header code
+	echo str_replace("<link rel='stylesheet' id='style-css'  href='http://western.oa-bsa.org/wp-content/plugins/style.css?ver=4.9.1' type='text/css' media='all' />", "", $in);
+    // echo $in; // output the result unless you want to remove it
+}
+add_action('wp_head','end_wp_head_buffer',998);
+
 // Start Increase the max upload size
 @ini_set( 'upload_max_size' , '64M' );
 @ini_set( 'post_max_size', '64M');
