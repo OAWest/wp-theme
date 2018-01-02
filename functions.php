@@ -119,10 +119,10 @@ function wpb_add_inline_css() {
 		if (!empty(get_theme_mod('header_logo'))) { $custom_css .= ".logo-western-region-white {background-image: url(\"".esc_url(get_theme_mod('header_logo'))."\"); }\n\t";}
 		if (!empty($options['primary_color'] ) ) { $custom_css .= "body { color: ".$options['primary_color']."; }\n\t";}
 		if (!empty(get_theme_mod('background_color'))){ $custom_css .= "  body { background-color: #".get_theme_mod('background_color')."; }\n\t"; }
-		if (!empty($options['primary_link_color']) ) { $custom_css .= "  a { color: ".$options['primary_link_color']." }\n\t"; }
-		if (!empty($options['primary_link_color']) ) { $custom_css .= "  .btn-default { border-color: ".$options['primary_link_color']." }\n\t"; }
-		if (!empty($options['primary_link_hover']) ) { $custom_css .= "  a:hover { color: ".$options['primary_link_hover']."; }\n"; }
-		if (!empty($options['primary_link_hover']) ) { $custom_css .= "  .btn-default:hover { border-color: ".$options['primary_link_hover']." }\n\t"; }
+		if (!empty($options['primary_link_color']) ) { $custom_css .= "  a { color: ".$options['primary_link_color']." }\n\t";
+													   $custom_css .= "  .btn-default { color: ".$options['primary_link_color']."; border-color: ".$options['primary_link_color']." }\n\t"; }
+		if (!empty($options['primary_link_hover']) ) { $custom_css .= "  a:hover { color: ".$options['primary_link_hover']." !important; }\n";
+													   $custom_css .= "  .btn.btn-default:hover { color: ".$options['primary_link_hover']."; border-color: ".$options['primary_link_hover']."; background-color:transparent; }\n\t"; }
 		
   //Add the above custom CSS via wp_add_inline_style
   wp_add_inline_style( 'style', $custom_css ); //Pass the variable into the main style sheet ID

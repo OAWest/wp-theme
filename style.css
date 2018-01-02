@@ -8342,6 +8342,7 @@ header.banner {
   header.banner.mountains {
     min-height: 500px; }
     header.banner.mountains::after {
+	  box-shadow:  inset 0px 0px 100px rgba(0,0,20,1);
       background-image: url("images/banners/mountains.jpg");
       -webkit-background-size: cover;
       -moz-background-size: cover;
@@ -8358,7 +8359,7 @@ header.banner {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: #645862;
+    background-color: rgba(100, 88, 98,.3);
     background: url("images/banners/overlay.png") repeat top left;
     z-index: 1; }
   header.banner .inner {
