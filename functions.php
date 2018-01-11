@@ -154,7 +154,7 @@ add_theme_support( 'custom-background', $defaults );
 // Start Social Media Links
 	function my_customizer_social_media_array() {
 		/* store social site names in array */
-		$social_sites = array('facebook', 'twitter', 'snapchat', 'google-plus', 'flickr', 'pinterest', 'youtube', 'tumblr', 'dribbble', 'rss', 'linkedin', 'instagram', 'email');
+		$social_sites = array('facebook', 'twitter', 'snapchat', 'google-plus', 'flickr', 'pinterest', 'youtube', 'tumblr', 'dribbble', 'rss', 'linkedin', 'instagram', 'email', 'phone');
 		return $social_sites;
 	}
 
@@ -210,20 +210,25 @@ add_theme_support( 'custom-background', $defaults );
 	 
 					/* setup the class */
 					$class = 'fa fa-' . $active_site;
-	 
-					if ( $active_site == 'email' ) {
-						?>
-							<a class="<?php echo $active_site; ?>" target="_blank" href="mailto:<?php echo antispambot( is_email( get_theme_mod( $active_site ) ) ); ?>">
-								<i class="fa fa-envelope" title="<?php _e('email icon', 'text-domain'); ?>"></i>
-							</a>
-					<?php }
+
 					if ( $active_site == 'snapchat' ) {
 						?>
 							<a class="<?php echo $active_site; ?>" target="_blank" href="<?php echo esc_url( get_theme_mod( $active_site) ); ?>">
 								<i class="fa fa-snapchat-ghost" title="<?php _e('snapchat icon', 'text-domain'); ?>"></i>
 							</a>
 					<?php }
-					
+					else if ( $active_site == 'email' ) {
+						?>
+							<a class="<?php echo $active_site; ?>" target="_blank" href="mailto:<?php echo esc_url( get_theme_mod( $active_site) ); ?>">
+								<i class="fa fa-envelope" title="<?php _e('email icon', 'text-domain'); ?>"></i>
+							</a>
+					<?php }
+					else if ( $active_site == 'phone' ) {
+						?>
+							<a class="<?php echo $active_site; ?>" target="_blank" href="tel:<?php echo esc_url( get_theme_mod( $active_site) ); ?>">
+								<i class="<?php echo esc_attr( $class ); ?>" title="<?php printf( __('%s icon', 'text-domain'), $active_site ); ?>"></i>
+							</a>
+					<?php }
 					else { ?>
 							<a class="<?php echo $active_site; ?>" target="_blank" href="<?php echo esc_url( get_theme_mod( $active_site) ); ?>">
 								<i class="<?php echo esc_attr( $class ); ?>" title="<?php printf( __('%s icon', 'text-domain'), $active_site ); ?>"></i>
