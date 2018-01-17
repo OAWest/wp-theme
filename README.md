@@ -4,9 +4,7 @@ Welcome to the public repository for the Western Region, Order of the Arrow Word
 
 ## To Do:
 
-* Seperate Bootstrap/Fontawesome CSS from the main stylesheet
 * Header background image upload at a smaller resolution
-* Create a permanent fix for the /wp-content/plugins/style.css?ver=4.9.1 include statement created by wp_head();
 
 ## Fork Us
 
