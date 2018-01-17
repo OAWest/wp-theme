@@ -34,8 +34,8 @@
   <a href="/wp-admin">Edit this page</a>
 </footer>
 
-<script src="https://unpkg.com/isotope-layout@3.0.5/dist/isotope.pkgd.min.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/isotope.pkgd.min.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/fit-columns.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/bootstrap.min.js"></script>
   </body>
 </html>
