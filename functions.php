@@ -14,6 +14,17 @@ function end_wp_head_buffer() {
 }
 add_action('wp_head','end_wp_head_buffer',998);
 
+// Start update old jquery link
+add_action('wp_enqueue_scripts', 'no_more_jquery');
+function no_more_jquery(){
+    wp_deregister_script('jquery');
+    wp_register_script('jquery', "http" . 
+    ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . 
+    "://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js", false, null);
+    wp_enqueue_script('jquery');
+}
+// End update old jquery link
+
 // Start Increase the max upload size
 @ini_set( 'upload_max_size' , '64M' );
 @ini_set( 'post_max_size', '64M');
