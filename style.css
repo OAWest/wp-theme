@@ -163,7 +163,6 @@ a {
   -ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   text-decoration: none;
-  border-bottom: dotted 1px;
   color: #ffad33; }
   a:hover {
     text-decoration: none;
@@ -299,6 +298,7 @@ p, ul, ol, dl, table, blockquote {
  * Banner
  */
 header.banner {
+  background: linear-gradient(-45deg, #bdc2c5, #e4e4e4, #bdc2c5);
   position: relative;
   color: white;
   width: 100%;
