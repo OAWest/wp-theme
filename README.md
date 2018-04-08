@@ -1,10 +1,6 @@
 # OAWest
 
-Welcome to the public repository for the Western Region, Order of the Arrow WordPress tempate. The Western Region consists of 14 sections throughout the Western United States, Hawaii Alaska, and Japan.
-
-## To Do:
-
-* Header background image upload at a smaller resolution
+Welcome to the public repository for the Western Region, Order of the Arrow WordPress template. The Western Region consists of 14 sections throughout the Western United States, Hawaii Alaska, and Japan.
 
 ## Fork Us
 
@@ -59,9 +55,9 @@ We recommend the short Hello World sample provided by GitHub:
 
 ## Want to be on the team?
 
-We're always looking for volunteers. Just send us a message on twitter:
+We're always looking for volunteers. Just send us a message an email:
 
-* Western Region Technology Committe Lead: [@brian_love](https://twitter.com/brian_love)
+* Western Region Technology Committee Lead: [Kyle McCaffery](mailto:kyle@western.oa-bsa.org)
 
 ## Have an issue?
 

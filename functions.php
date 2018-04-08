@@ -1,19 +1,5 @@
 <?php
 
-function start_wp_head_buffer() {
-    ob_start();
-}
-add_action('wp_head','start_wp_head_buffer',0);
-
-function end_wp_head_buffer() {
-    $in = ob_get_clean();
-
-    // here do whatever you want with the header code
-	echo str_replace("<link rel='stylesheet' id='style-css'  href='http://western.oa-bsa.org/wp-content/plugins/style.css?ver=4.9.1' type='text/css' media='all' />", "", $in);
-    // echo $in; // output the result unless you want to remove it
-}
-add_action('wp_head','end_wp_head_buffer',998);
-
 // Start update old jquery link
 add_action('wp_enqueue_scripts', 'no_more_jquery');
 function no_more_jquery(){
@@ -120,7 +106,8 @@ add_action( 'customize_register', 'govpress_customize_register' );
 //Adding CSS inline style to an existing CSS stylesheet
 function wpb_add_inline_css() {
 	
-	wp_enqueue_style( 'style', plugins_url() . '/style.css' );
+	wp_enqueue_style( 'style', get_template_directory_uri() . '/style.css' );
+
 	
         //All the user input CSS settings as set in the plugin settings
 		$options = get_option( 'govpress', false );
