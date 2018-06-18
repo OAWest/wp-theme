@@ -277,7 +277,7 @@ $pages = paginate_links( array(
 // Start Head Navigation Walker
 class description_walker extends Walker_Nav_Menu
 {
-  function start_el(&$output, $item, $depth, $args)
+  function start_el(&$output, $item, $depth=0, $args=array())
   {
    global $wp_query;
    $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
@@ -336,7 +336,7 @@ function clean_custom_menu( $theme_location ) {
         $count = 0;
         $submenu = false;
 
-		foreach( $menu_items as $menu_item ) {
+		foreach( (array)$menu_items as $menu_item ) {
 			 
 			$link = $menu_item->url;
 			$title = $menu_item->title;
