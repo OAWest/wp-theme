@@ -171,11 +171,27 @@ add_theme_support( 'custom-background', $defaults );
 	 
 		foreach($social_sites as $social_site) {
 	 
-			$wp_customize->add_setting( "$social_site", array(
+			if($social_site == 'email'){
+				$wp_customize->add_setting( "$social_site", array(
+					'type'              => 'theme_mod',
+					'capability'        => 'edit_theme_options',
+					'sanitize_callback' => 'sanitize_email'
+				) );
+			}
+			else if($social_site == 'phone'){
+				$wp_customize->add_setting( "$social_site", array(
+					'type'              => 'theme_mod',
+					'capability'        => 'edit_theme_options',
+					'sanitize_callback' => 'sanitize_key'
+				) );
+			}
+			else {
+				$wp_customize->add_setting( "$social_site", array(
 					'type'              => 'theme_mod',
 					'capability'        => 'edit_theme_options',
 					'sanitize_callback' => 'esc_url_raw'
-			) );
+				) );
+			}
 	 
 			$wp_customize->add_control( $social_site, array(
 					'label'    => __( "$social_site url:", 'text-domain' ),
@@ -217,13 +233,13 @@ add_theme_support( 'custom-background', $defaults );
 					<?php }
 					else if ( $active_site == 'email' ) {
 						?>
-							<a class="<?php echo $active_site; ?>" target="_blank" href="mailto:<?php echo esc_url( get_theme_mod( $active_site) ); ?>">
+							<a class="<?php echo $active_site; ?>" target="_blank" href="mailto:<?php echo get_theme_mod($active_site); ?>">
 								<i class="fa fa-envelope" title="<?php _e('email icon', 'text-domain'); ?>"></i>
 							</a>
 					<?php }
 					else if ( $active_site == 'phone' ) {
 						?>
-							<a class="<?php echo $active_site; ?>" target="_blank" href="tel:<?php echo esc_url( get_theme_mod( $active_site) ); ?>">
+							<a class="<?php echo $active_site; ?>" target="_blank" href="tel:<?php echo get_theme_mod($active_site); ?>">
 								<i class="<?php echo esc_attr( $class ); ?>" title="<?php printf( __('%s icon', 'text-domain'), $active_site ); ?>"></i>
 							</a>
 					<?php }
