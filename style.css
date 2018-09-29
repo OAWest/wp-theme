@@ -4,7 +4,7 @@ Theme URI: https://github.com/OAWest/wp-theme
 Author: Western Region, Order of the Arrow
 Author URI: http://western.oa-bsa.org/
 Description: Designed for use by the Western Region, Order of the Arrow, and its sections.
-Version: 2018.04.08
+Version: 2018.09.29
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: WR
@@ -48,11 +48,12 @@ a.bg-primary:hover, a.bg-primary:focus {
   border-radius: 0;
   -webkit-transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
   -moz-transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
-  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease; 
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 .btn-default {
   background-color: transparent;
-  border-color: #DBB780;
+  border: 2px solid #DBB780;
+  margin-top: 5px;
 }
 .btn-default:focus, .btn-default.focus {
   background-color: transparent;
@@ -89,6 +90,7 @@ a.bg-primary:hover, a.bg-primary:focus {
   background-color: #d0a058;
   border-color: #c8913c;
 }
+
 a {
   color: #DBB780;
   text-decoration: none;
@@ -395,17 +397,6 @@ header.banner {
 a.banner {
   text-decoration: none;
   cursor: pointer; }
-
-/**
- * Bootstrap buttons
- */
-.btn.btn-default {
-  border-width: 2px;
-  margin-top: 5px;
-  transition: background-color 0.2s ease-in-out; }
-  .btn.btn-default:hover {
-    background-color: #DBB780;
-    color: #fff; }
 
 /**
 * Footer

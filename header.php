@@ -91,7 +91,6 @@
         percentPosition: true
         });
         
-        console.log("hello");
         $grid.imagesLoaded().progress( function() {
             $grid.isotope('layout');
         });
