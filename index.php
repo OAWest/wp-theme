@@ -22,8 +22,7 @@ get_header(); ?>
       <h3><span><?php echo get_bloginfo( 'name' ); ?> News</span></h3>
   </header>
     <div class="container">
-      <div class="row grid" isotope-grid>
-	  
+      <div class="row grid" id="grid">
 		<?php
 			// Iteriate through the first 10 non-sticky posts
 			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;

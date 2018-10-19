@@ -7,8 +7,8 @@
     </div>
   </section>
 </main>
-    
-	<footer id="footer">
+
+<footer id="footer">
   <div class="container">
     <div class="row">
         <?php clean_custom_menu("footer_menu"); ?>
@@ -31,10 +31,12 @@
   </div>
 </footer>
 <footer id="edit">
-  <a href="/wp-admin">Edit this page</a>
+  <?php edit_post_link('Edit this page'); ?>
 </footer>
 
-<script src="<?php echo get_template_directory_uri(); ?>/js/build/vendor.bundle.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/js/build/main.bundle.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/isotope.pkgd.min.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/fit-columns.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/bootstrap.min.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/imagesloaded.pkgd.min.js"></script>
   </body>
 </html>

@@ -1,5 +1,16 @@
 <?php
 
+// Start update old jquery link
+add_action('wp_enqueue_scripts', 'no_more_jquery');
+function no_more_jquery(){
+    wp_deregister_script('jquery');
+    wp_register_script('jquery', "http" . 
+    ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . 
+    "://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js", false, null);
+    wp_enqueue_script('jquery');
+}
+// End update old jquery link
+
 // Start Increase the max upload size
 @ini_set( 'upload_max_size' , '64M' );
 @ini_set( 'post_max_size', '64M');
@@ -95,7 +106,8 @@ add_action( 'customize_register', 'govpress_customize_register' );
 //Adding CSS inline style to an existing CSS stylesheet
 function wpb_add_inline_css() {
 	
-	wp_enqueue_style( 'style', plugins_url() . '/style.css' );
+	wp_enqueue_style( 'style', get_template_directory_uri() . '/style.css' );
+
 	
         //All the user input CSS settings as set in the plugin settings
 		$options = get_option( 'govpress', false );
@@ -105,10 +117,10 @@ function wpb_add_inline_css() {
 		if (!empty(get_theme_mod('header_logo'))) { $custom_css .= ".logo-western-region-white {background-image: url(\"".esc_url(get_theme_mod('header_logo'))."\"); }\n\t";}
 		if (!empty($options['primary_color'] ) ) { $custom_css .= "body { color: ".$options['primary_color']."; }\n\t";}
 		if (!empty(get_theme_mod('background_color'))){ $custom_css .= "  body { background-color: #".get_theme_mod('background_color')."; }\n\t"; }
-		if (!empty($options['primary_link_color']) ) { $custom_css .= "  a { color: ".$options['primary_link_color']." }\n\t"; }
-		if (!empty($options['primary_link_color']) ) { $custom_css .= "  .btn-default { border-color: ".$options['primary_link_color']." }\n\t"; }
-		if (!empty($options['primary_link_hover']) ) { $custom_css .= "  a:hover { color: ".$options['primary_link_hover']."; }\n"; }
-		if (!empty($options['primary_link_hover']) ) { $custom_css .= "  .btn-default:hover { border-color: ".$options['primary_link_hover']." }\n\t"; }
+		if (!empty($options['primary_link_color']) ) { $custom_css .= "  a { color: ".$options['primary_link_color']." }\n\t";
+													   $custom_css .= "  .btn-default { color: ".$options['primary_link_color']."; border-color: ".$options['primary_link_color']." }\n\t"; }
+		if (!empty($options['primary_link_hover']) ) { $custom_css .= "  a:hover { color: ".$options['primary_link_hover']." !important; }\n";
+													   $custom_css .= "  .btn.btn-default:hover { color: ".$options['primary_link_hover']."; border-color: ".$options['primary_link_hover']."; background-color:transparent; }\n\t"; }
 		
   //Add the above custom CSS via wp_add_inline_style
   wp_add_inline_style( 'style', $custom_css ); //Pass the variable into the main style sheet ID
@@ -140,7 +152,7 @@ add_theme_support( 'custom-background', $defaults );
 // Start Social Media Links
 	function my_customizer_social_media_array() {
 		/* store social site names in array */
-		$social_sites = array('facebook', 'twitter', 'snapchat', 'google-plus', 'flickr', 'pinterest', 'youtube', 'tumblr', 'dribbble', 'rss', 'linkedin', 'instagram', 'email');
+		$social_sites = array('facebook', 'twitter', 'snapchat', 'google-plus', 'flickr', 'pinterest', 'youtube', 'tumblr', 'dribbble', 'rss', 'linkedin', 'instagram', 'email', 'phone');
 		return $social_sites;
 	}
 
@@ -159,11 +171,27 @@ add_theme_support( 'custom-background', $defaults );
 	 
 		foreach($social_sites as $social_site) {
 	 
-			$wp_customize->add_setting( "$social_site", array(
+			if($social_site == 'email'){
+				$wp_customize->add_setting( "$social_site", array(
+					'type'              => 'theme_mod',
+					'capability'        => 'edit_theme_options',
+					'sanitize_callback' => 'sanitize_email'
+				) );
+			}
+			else if($social_site == 'phone'){
+				$wp_customize->add_setting( "$social_site", array(
+					'type'              => 'theme_mod',
+					'capability'        => 'edit_theme_options',
+					'sanitize_callback' => 'sanitize_key'
+				) );
+			}
+			else {
+				$wp_customize->add_setting( "$social_site", array(
 					'type'              => 'theme_mod',
 					'capability'        => 'edit_theme_options',
 					'sanitize_callback' => 'esc_url_raw'
-			) );
+				) );
+			}
 	 
 			$wp_customize->add_control( $social_site, array(
 					'label'    => __( "$social_site url:", 'text-domain' ),
@@ -196,20 +224,25 @@ add_theme_support( 'custom-background', $defaults );
 	 
 					/* setup the class */
 					$class = 'fa fa-' . $active_site;
-	 
-					if ( $active_site == 'email' ) {
-						?>
-							<a class="<?php echo $active_site; ?>" target="_blank" href="mailto:<?php echo antispambot( is_email( get_theme_mod( $active_site ) ) ); ?>">
-								<i class="fa fa-envelope" title="<?php _e('email icon', 'text-domain'); ?>"></i>
-							</a>
-					<?php }
+
 					if ( $active_site == 'snapchat' ) {
 						?>
 							<a class="<?php echo $active_site; ?>" target="_blank" href="<?php echo esc_url( get_theme_mod( $active_site) ); ?>">
 								<i class="fa fa-snapchat-ghost" title="<?php _e('snapchat icon', 'text-domain'); ?>"></i>
 							</a>
 					<?php }
-					
+					else if ( $active_site == 'email' ) {
+						?>
+							<a class="<?php echo $active_site; ?>" target="_blank" href="mailto:<?php echo get_theme_mod($active_site); ?>">
+								<i class="fa fa-envelope" title="<?php _e('email icon', 'text-domain'); ?>"></i>
+							</a>
+					<?php }
+					else if ( $active_site == 'phone' ) {
+						?>
+							<a class="<?php echo $active_site; ?>" target="_blank" href="tel:<?php echo get_theme_mod($active_site); ?>">
+								<i class="<?php echo esc_attr( $class ); ?>" title="<?php printf( __('%s icon', 'text-domain'), $active_site ); ?>"></i>
+							</a>
+					<?php }
 					else { ?>
 							<a class="<?php echo $active_site; ?>" target="_blank" href="<?php echo esc_url( get_theme_mod( $active_site) ); ?>">
 								<i class="<?php echo esc_attr( $class ); ?>" title="<?php printf( __('%s icon', 'text-domain'), $active_site ); ?>"></i>
@@ -260,7 +293,7 @@ $pages = paginate_links( array(
 // Start Head Navigation Walker
 class description_walker extends Walker_Nav_Menu
 {
-  function start_el(&$output, $item, $depth, $args)
+  function start_el(&$output, $item, $depth=0, $args=array())
   {
    global $wp_query;
    $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
@@ -319,7 +352,7 @@ function clean_custom_menu( $theme_location ) {
         $count = 0;
         $submenu = false;
 
-		foreach( $menu_items as $menu_item ) {
+		foreach( (array)$menu_items as $menu_item ) {
 			 
 			$link = $menu_item->url;
 			$title = $menu_item->title;

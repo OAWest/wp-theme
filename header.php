@@ -7,7 +7,8 @@
   <title><?php echo get_bloginfo( 'name' ); ?></title>
   <meta name="description" content="<?php echo get_bloginfo( 'description' ); ?>">
   <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_icon_url();?>">
-  <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <?php wp_head(); ?>
 </head>
 
@@ -82,3 +83,16 @@
 	}
 	else {echo "<main class=\"index\">";}
 ?>
+
+<script>
+    $(document).ready(function () {
+        var $grid = $('#grid').isotope({
+        itemSelector: '.grid-item',
+        percentPosition: true
+        });
+        
+        $grid.imagesLoaded().progress( function() {
+            $grid.isotope('layout');
+        });
+    });
+</script>
