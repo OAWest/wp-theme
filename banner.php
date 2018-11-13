@@ -6,7 +6,7 @@
     <p>Welcome to <?php echo get_bloginfo( 'name' ); ?>, Order of the Arrow</p>
     <footer id="header">
       <div class="row">
-		<div class="col-xs-12 social">
+		<div class="col-12 social">
 			<?php echo my_social_media_icons(); ?>
 		</div>
       </div>

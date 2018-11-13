@@ -15,7 +15,7 @@
 			  ?>
 			  
 			  <div class="col-xs-12 col-sm-4">
-				<div class="panel post">
+				<div class="card post">
 				  <?php
 					if ( has_post_thumbnail() ) { // check if the post has a featured image assigned to it.
 						echo "<a class=\"post-link\" href=\"";
@@ -31,7 +31,7 @@
 						echo " 1024w\" width=\"100%\"></a>";
 					}
 				  ?>
-				  <div class="panel-body">
+				  <div class="card-body">
 					<center>
 					<h2><a class="post-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 					<?php the_content(__('<div class="read-more"><p class="btn btn-block btn-default">Read More</p></div>')); ?>

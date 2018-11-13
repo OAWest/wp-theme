@@ -2,6 +2,16 @@
 
 Welcome to the public repository for the Western Region, Order of the Arrow WordPress template. The Western Region consists of 14 sections throughout the Western United States, Hawaii Alaska, and Japan.
 
+## Changelog
+
+2018.11.11
+- Updated bootstrap version from 3.3.7 to 4.1.3
+- Fixed Footer Menu Display Crowding
+- Updated Pagination
+- Removed featured articles from displaying on sub-pages
+- Added login security (prevent displaying when username is incorrect)
+- Automatically adds img-fluid and img-thumbnail class to images
+
 ## Fork Us
 
 If you would like to assist with the development you will need to fork our repository, clone it locally, and then start contributing.

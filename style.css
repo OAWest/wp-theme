@@ -4,7 +4,7 @@ Theme URI: https://github.com/OAWest/wp-theme
 Author: Western Region, Order of the Arrow
 Author URI: http://western.oa-bsa.org/
 Description: Designed for use by the Western Region, Order of the Arrow, and its sections.
-Version: 2018.09.29
+Version: 2018.11.11
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: WR
@@ -18,6 +18,11 @@ Tags: one-column, two-columns, flexible-header, accessibility-ready, custom-colo
 /**
  *  Bootstrap Overrides
  */
+.card{
+	border-radius: 0px;
+	box-shadow: 0 1px 1px rgba(0,0,0,.05);
+	margin-bottom:20px;
+}
 .img-thumbnail {
   background-color: #f3f6fa;
   border-radius: 0;
@@ -51,6 +56,7 @@ a.bg-primary:hover, a.bg-primary:focus {
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 .btn-default {
+  color: #212529;
   background-color: transparent;
   border: 2px solid #DBB780;
   margin-top: 5px;
@@ -91,57 +97,6 @@ a.bg-primary:hover, a.bg-primary:focus {
   border-color: #c8913c;
 }
 
-a {
-  color: #DBB780;
-  text-decoration: none;
-}
-a:hover, a:focus {
-    color: #ca9544;
-}
-.navbar-default {
-  background-color: #fff;
-  border-color: #eeeeee;
-}
-.panel {
-  border-radius: 0;
-}
-@media (max-width: 1200px) {
-  .navbar-header {
-      float: none;
-  }
-  .navbar-left,.navbar-right {
-      float: none !important;
-  }
-  .navbar-toggle {
-      display: block;
-  }
-  .navbar-collapse {
-      border-top: 1px solid transparent;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-  }
-  .navbar-fixed-top {
-      top: 0;
-      border-width: 0 0 1px;
-  }
-  .navbar-collapse.collapse {
-      display: none!important;
-  }
-  .navbar-nav {
-      float: none!important;
-      margin-top: 7.5px;
-  }
-  .navbar-nav>li {
-      float: none;
-  }
-  .navbar-nav>li>a {
-      padding-top: 10px;
-      padding-bottom: 10px;
-  }
-  .collapse.in{
-      display:block !important;
-  }
-}
-  
 /**
  * Body
  */
@@ -151,8 +106,8 @@ html, body {
   -webkit-overflow-scrolling: touch; }
 
 body {
-  padding-top: 60px;
   background-color: #f3f6fa;
+  font-size: 14px;
 }
 
 /**
@@ -165,22 +120,10 @@ a {
   -ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   text-decoration: none;
-  color: #ffad33; }
-  a:hover {
-    text-decoration: none;
-    border-bottom-color: transparent; }
-
-/**
- *  AngularJS Cloaking
- */
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
-  display: none !important; }
-
-/**
- *  Angular UI Bootstrap
- */
-.nav, .pagination, .carousel, .panel-title a {
-  cursor: pointer; }
+  color: #DBB780; }
+  a:hover, a:focus {
+	color: #ca9544;
+    text-decoration: none;}
 
 /**
  * Font
@@ -189,17 +132,20 @@ body, input, select, textarea {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   letter-spacing: 0.025em;
-  line-height: 1.75em; }
+  line-height: 1.75em;
+}
 
 /**
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
   color: inherit;
+  font-size: 30px;
   font-weight: 300;
   line-height: 1.25em;
   margin: 1em 0;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+}
   h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     color: inherit;
     text-decoration: none;
@@ -210,12 +156,14 @@ h1 {
 
 h2 {
   margin: 1.25em 0 1em; }
+h4{
+font-size: 18px;}
 
 header.divider {
   text-align: center; }
   header.divider h3 {
     margin-bottom: 24px;
-    font-size: 2rem;
+    font-size: 20px;
     letter-spacing: 1.33px;
     font-style: normal;
     font-weight: 300;
@@ -244,48 +192,45 @@ header.divider {
 /**
  * List groups
  */
+ 
+.card-default{
+	border-radius: 0px;
+	border-bottom: 0px;
+}
+ 
+.list-group-item {
+	border-right: 0px;
+	border-left: 0px;
+}
+
+.list-group-item:first-child,
+.card > .list-group:first-child,
+.card > .list-group-item:first-child{
+	border-top: 0px;
+}
+
+.list-group-item:first-child,
+.list-group-item:last-child,
+.card > .list-group:first-child,
+.card > .list-group:last-child,
+.card > .list-group-item:first-child,
+.card > .list-group-item:last-child,
+.card > .list-group:first-child .list-group-item:first-child,
+.card > .list-group:last-child .list-group-item:last-child
+{
+    border-radius: 0px;
+}
+
 .list-group > .list-group-item > .fa.fa-chevron-right {
   float: right;
   padding-top: 5px; }
-
-/**
- * Loading indicator
- */
-section.loading {
-  min-height: 100%;
-  text-align: center;
-  font-size: 36px;
-  height: 100%;
-  width: 100%;
-  text-align: center; }
-  section.loading::before {
-    content: " ";
-    display: inline-block;
-    vertical-align: middle;
-    height: 100%; }
-  section.loading > .vcenter {
-    max-width: 100%;
-    display: inline-block;
-    vertical-align: middle; }
-
-/**
- * Pagination
- */
-.pagination {
-  margin: 60px 48px;
-  text-align: center;
-  display: block;
-  text-align: center; }
-  .pagination ul {
-    margin: 0 auto;
-    list-style: none; }
-  .pagination li {
-    padding-left: 12px;
-    padding-right: 12px;
-    list-style-type: none;
-    display: inline; }
-  .pagination .current-page {
-    font-weight: 600; }
+  
+.card .list-group-item{
+	color: #212529;
+}
+.card a.list-group-item:hover{
+	background-color: #f3f6fa;
+}
 
 /**
  * Paragraphs
@@ -397,6 +342,26 @@ header.banner {
 a.banner {
   text-decoration: none;
   cursor: pointer; }
+
+/**
+* Pagination
+*/
+.page-item.active .page-link {
+	background-color: #DBB780;
+	border-color: #DBB780
+}
+
+.page-link {
+	color: #DBB780;
+}
+.page-link:hover {
+	color: #fff;
+	background-color: #cd9c50;
+	-webkit-transition: background-color 0.4s ease;
+	-moz-transition: background-color 0.4s ease;
+	transition: background-color 0.4s ease;
+}
+
 
 /**
 * Footer
@@ -549,12 +514,21 @@ a.banner {
 /**
  * Bootstrap navbar
  */
-.navbar-fixed-top {
+.navbar-light {
+  background-color: #fff;
+  border-color: #eeeeee;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.075);
-  min-height:60px;
-  padding-left: 10px;
+  height:60px;
+  padding: 0px 10px 0px 10px;
 }
-  .navbar-fixed-top .container .navbar-header .navbar-brand {
+
+@media screen and (min-width: 1200px) {
+	.navbar-light .container {
+		max-width: 1200px;
+	}
+}
+
+  .navbar-light .container .navbar-header .navbar-brand {
     background-image: url("images/logos/western-region.png");
     background-repeat: no-repeat;
     background-position-y: center;
@@ -567,41 +541,40 @@ a.banner {
     color: inherit;
     text-decoration: none; }
     @media only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 1.3 / 1), only screen and (min-resolution: 125dpi), only screen and (min-resolution: 1.3dppx) {
-      .navbar-fixed-top .container .navbar-header .navbar-brand {
+      .navbar-light .container .navbar-header .navbar-brand {
         background-image: url("images/logos/western-region@2x.png");
         background-size: contain; } }
   @media (min-width: 768px) {
-    .navbar-fixed-top .container .navbar-header .navbar-brand {
+    .navbar-light .container .navbar-header .navbar-brand {
       width: 240px; } }
-  .navbar-fixed-top .container ul.navbar-nav > li > a {
+  .navbar-light .container ul.navbar-nav > li > a {
     border: none;
     color: inherit;
     text-decoration: none;
-    padding-top: 10px;
     margin-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 10px; }
-    .navbar-fixed-top .container ul.navbar-nav > li > a:hover {
+	margin-bottom: 10px;
+    padding: 10px 15px;}
+    .navbar-light .container ul.navbar-nav > li > a:hover {
       background: none; }
-  .navbar-fixed-top .container ul.navbar-nav > li:hover > a {
+  .navbar-light .container ul.navbar-nav > li:hover > a {
     -moz-transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
     -ms-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     background-color: rgba(219, 183, 128, 0.2); }
-  .navbar-fixed-top .container .sidenav {
+  .navbar-light .container .sidenav {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 100;
     top: 0;
     left: 0;
     background-color: #1a1a1a;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 50px; }
-    .navbar-fixed-top .container .sidenav a {
+    .navbar-light .container .sidenav a {
       padding: 8px 8px 8px 32px;
       text-decoration: none;
       font-size: 25px;
@@ -610,18 +583,18 @@ a.banner {
       transition: 0.3s;
       border-bottom: 0px;
       white-space: nowrap; }
-      .navbar-fixed-top .container .sidenav a:hover {
+      .navbar-light .container .sidenav a:hover {
         color: #fff; }
-  .navbar-fixed-top .container .closebtn {
+  .navbar-light .container .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
     font-size: 36px !important;
     margin-left: 50px; }
   @media screen and (max-height: 480px) {
-    .navbar-fixed-top .container .sidenav {
+    .navbar-light .container .sidenav {
       padding-top: 15px; }
-      .navbar-fixed-top .container .sidenav a {
+      .navbar-light .container .sidenav a {
         font-size: 18px; } }
 
 
@@ -651,15 +624,15 @@ main.index section.highlights {
       max-height: 250px;
       max-width: 250px; }
 main.index section.posts {
-  margin: 48px 0; }
-  main.index section.posts .container .row .panel.post {
-    background: #fff; }
-    main.index section.posts .container .row .panel.post .panel-body {
+  margin: 48px 0;}
+  main.index section.posts .container .row .card.post {
+    background: #fff;}
+    main.index section.posts .container .row .card.post .card-body {
       padding: 12px 24px; }
-      main.index section.posts .container .row .panel.post .panel-body h2 {
+      main.index section.posts .container .row .card.post .card-body h2 {
         margin-top: 0;
         margin-bottom: 0; }
-      main.index section.posts .container .row .panel.post .panel-body .post-date {
+      main.index section.posts .container .row .card.post .card-body .post-date {
         text-transform: uppercase;
         color: #999;
         font-weight: 400;
@@ -679,14 +652,14 @@ main.page {
   padding: 48px 0; }
   main.page.page-with-banner {
     box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, 0.075); }
-  main.page .container .row .panel.post {
+  main.page .container .row .card.post {
     background: #fff; }
-    main.page .container .row .panel.post .panel-body {
+    main.page .container .row .card.post .card-body {
       padding: 6px 24px; }
   @media (min-width: 768px) {
-    main.page .container .row .panel.post {
+    main.page .container .row .card.post {
       background: #fff; }
-      main.page .container .row .panel.post .panel-body {
+      main.page .container .row .card.post .card-body {
         padding: 12px 48px; } }
 
 /**
@@ -694,11 +667,11 @@ main.page {
  */
 main.post {
   margin: 48px 0; }
-  main.post .container .row .panel.post {
+  main.post .container .row .card.post {
     background: #fff; }
-    main.post .container .row .panel.post .panel-body {
+    main.post .container .row .card.post .card-body {
       padding: 6px 24px; }
-    main.post .container .row .panel.post .panel-footer {
+    main.post .container .row .card.post .card-footer {
       background: #fff;
       padding: 6px 24px;
       text-transform: uppercase;
@@ -706,6 +679,6 @@ main.post {
       font-weight: 400;
       font-size: 11px;
       margin-top: 24px; }
-      main.post .container .row .panel.post .panel-footer a {
+      main.post .container .row .card.post .card-footer a {
         color: #999;
         border-color: transparent; }

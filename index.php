@@ -35,7 +35,7 @@ get_header(); ?>
 			if ( $wp_query->have_posts() ) : while ( $wp_query->have_posts() ) : $wp_query->the_post();
 		?>
           <div class="col-xs-12 col-sm-6 grid-item">
-            <div class="panel post">
+            <div class="card post">
 			<?php
 			if ( has_post_thumbnail() ) { // check if the post has a featured image assigned to it.
 				echo "<a class=\"post-link\" href=\"";
@@ -51,7 +51,7 @@ get_header(); ?>
 				echo " 1024w\" width=\"100%\"></a>";
 			}
 			?>
-              <div class="panel-body">
+              <div class="card-body">
                 <h2>
                   <a class="post-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                 </h2>

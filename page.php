@@ -5,8 +5,8 @@
 	  
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-          <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-            <div class="panel post">
+          <div class="col-xs-12 col-sm-10 offset-sm-1">
+            <div class="card post">
 			<?php
 			if ( has_post_thumbnail() ) { // check if the post has a featured image assigned to it.
 				echo "<img src=\"";
@@ -20,19 +20,21 @@
 				echo " 1024w\" width=\"100%\">";
 			}
 			?>
-              <div class="panel-body">
+              <div class="card-body">
                 <h1 class="post-title" itemprop="name headline"><?php the_title(); ?></h1>
 				<hr>
 				<div class="post-content" itemprop="articleBody">
 					<?php the_content(__('<div class="read-more"><p class="btn btn-block btn-default">Read More</p></div>')); ?>
 				</div>
               </div>
-			  <div class="panel-footer">
+			  <div class="card-footer">
 				<div class="post-date date">
 				  <time datetime="<?php the_time('Y-m-d\TH:i:sP') ?>" itemprop="datePublished">
 					Published <?php the_time('F jS, Y') ?>
 				  </time>
-				  <?php edit_post_link('edit'); ?> <br> by <?php the_author(); ?> 
+				  <?php if(is_user_logged_in()):
+							edit_post_link('edit'); ?> <br> by <?php the_author();
+						endif ?> 
 				</div>
 			 </div>
             </div>

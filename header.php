@@ -7,23 +7,20 @@
   <title><?php echo get_bloginfo( 'name' ); ?></title>
   <meta name="description" content="<?php echo get_bloginfo( 'description' ); ?>">
   <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_icon_url();?>">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <?php wp_head(); ?>
 </head>
 
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-light navbar-expand-xl">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" onclick="openNav()" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
       <a class="navbar-brand" href="/"></a>
     </div>
+	<button type="button" class="navbar-toggler" onclick="openNav()" aria-expanded="false" aria-controls="navbar">
+		<span class="navbar-toggler-icon"></span>
+	</button>
 
 		<?php 
 		$defaults = array(
@@ -32,7 +29,7 @@
 			'container'       => 'div',
 			'container_class' => 'navbar-collapse collapse',
 			'container_id'    => '',
-			'menu_class'      => 'nav navbar-nav navbar-right',
+			'menu_class'      => 'navbar-nav ml-auto',
 			'menu_id'         => '',
 			'echo'            => true,
 			'fallback_cb'     => 'false',
@@ -76,7 +73,7 @@
 
 <?php
 	// If this is the first index page, include the following
-	if (is_front_page()) {
+	if (is_front_page() && !is_paged()) {
 		require_once('banner.php'); // Include the header banner
 		echo "<main class=\"index\">";
 		require_once('sidebar.php'); // Iteriate through the sticky posts
