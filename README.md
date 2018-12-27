@@ -4,6 +4,10 @@ Welcome to the public repository for the Western Region, Order of the Arrow Word
 
 ## Changelog
 
+2018.12.16
+- Custom login screen
+- Fixed tripple menu item bug
+
 2018.11.11
 - Updated bootstrap version from 3.3.7 to 4.1.3
 - Fixed Footer Menu Display Crowding

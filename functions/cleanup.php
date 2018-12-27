@@ -32,16 +32,4 @@
 		wp_enqueue_script('jquery');
 	}
 // End update old jquery link
-
-
-// Start show less info to users on failed login for security.
-	// (Will not let a valid username be known.)
-	if ( ! function_exists('show_less_login_info') ) {
-	  function show_less_login_info() {
-		  return "<strong>ERROR</strong>: Incorrect Username or Password";
-	  }
-	}
-	add_filter( 'login_errors', 'show_less_login_info' );
-// End show less info to users on failed login for security.
-
 ?>

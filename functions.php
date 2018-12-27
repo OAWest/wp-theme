@@ -2,6 +2,7 @@
 
 require_once get_template_directory() . '/functions/cleanup.php';
 require_once get_template_directory() . '/functions/customizer.php';
+require_once get_template_directory() . '/functions/login.php';
 require_once get_template_directory() . '/functions/pagination.php';
 require_once get_template_directory() . '/functions/navbars.php';
 
