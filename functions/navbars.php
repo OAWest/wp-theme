@@ -4,63 +4,67 @@
  */
 
  
-// Start Head Navigation Walker
-	class description_walker extends Walker_Nav_Menu
-	{
-	  function start_el(&$output, $item, $depth=0, $args=array())
-	  {
-	   global $wp_query;
-	   $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+if ( function_exists( 'register_nav_menus' ) ) {
+	register_nav_menus(
+		array(
+		  'nav_menu' => 'Nav Menu',
+		  'footer_menu' => 'Footer Menu'
+		)
+	);
+}
 
-	   $class_names = $value = '';
+function clean_custom_menu( $theme_location ) {
+	if ( ($theme_location) && ($locations = get_nav_menu_locations()) && isset($locations[$theme_location]) ) {
+	
 
-	   $classes = empty( $item->classes ) ? array() : (array) $item->classes;
-
-	   $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
-	   $class_names = ' class="'. esc_attr( $class_names ) . '"';
-
-	   $output .= $indent . '<li>';
-
-	   $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
-	   $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
-	   $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
-	   $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
-
-	   $prepend = '<h4>';
-	   $append = '</h4>';
-	   $description  = ! empty( $item->description ) ? '<span>'.esc_attr( $item->description ).'</span>' : '';
-
-	   if($depth != 0) {
-			$description = $append = $prepend = "";
-	   }
-	   
-
-		$item_output = $args->before;
-		$item_output .= '<a'. $attributes .'>';
-		$item_output .= $args->link_before .$prepend.apply_filters( 'the_title', $item->title, $item->ID ).$append;
-		$item_output .= $description.$args->link_after;
-		$item_output .= '</a>';
-		$item_output .= $args->after;
-
-		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-		}
-	}
-// End Head Navigation Walker
-
-
-// Start Footer Nav Walker
-	if ( function_exists( 'register_nav_menus' ) ) {
-		register_nav_menus(
-			array(
-			  'nav_menu' => 'Nav Menu',
-			  'footer_menu' => 'Footer Menu'
-			)
-		);
-	}
-
-	function clean_custom_menu( $theme_location ) {
-		if ( ($theme_location) && ($locations = get_nav_menu_locations()) && isset($locations[$theme_location]) ) {
+	// Start Head Navigation Walker
+		if($theme_location=='nav_menu'){
+	
 			$menu = get_term( $locations[$theme_location], 'nav_menu' );
+			$menu_items = wp_get_nav_menu_items($menu->term_id);
+			
+	 
+			$count = 0;
+			$submenu = false;
+			$menu_list = "<ul id=\"menu-header\" class=\"navbar-nav ml-auto\">";
+			
+			foreach( (array)$menu_items as $menu_item ) {
+				 
+				$link = $menu_item->url;
+				$title = $menu_item->title;
+				
+				// If the menu_item has a sub-menu
+				if ( $menu_item->ID == $menu_items[ $count + 1 ]->menu_item_parent) {
+					if ( !$submenu ) {
+						$submenu = true;
+						$menu_list .= "\t<li class=\"dropdown\">\n";
+						$menu_list .= "\t\t<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">$title <span class=\"caret\"></span></a>\n";
+						$menu_list .= "\t\t\t<ul class=\"dropdown-menu\">\n";
+						$menu_list .= "\t\t\t".'<li class="item"><a href="'.$link.'" class="title">'.$title.'</a></li>' ."\n";
+					}
+				}
+				
+				// If this is the last sub-menu item
+				else if ( $menu_item->menu_item_parent != $menu_items[ $count + 1 ]->menu_item_parent && $submenu ){
+					$menu_list .= "\t\t\t".'<li class="item"><a href="'.$link.'" class="title">'.$title.'</a></li>' ."\n";
+					$menu_list .= "\t\t".'</ul>'."\n\t".'</li>'."\n";
+					$submenu = false;
+				}
+				
+				// Otherwise a regular menu item
+				else {
+					$menu_list .= "\t<li><a href=\"$link\">$title</a></li>\n";
+				}
+				$count++;
+			}
+			$menu_list .= "</ul>";
+		}
+	// End Head Navigation Walker
+
+
+	// Start Footer Nav Walker
+		else if($theme_location=='footer_menu'){
+							$menu = get_term( $locations[$theme_location], 'nav_menu' );
 			$menu_items = wp_get_nav_menu_items($menu->term_id);
 	 
 			$count = 0;
@@ -104,12 +108,15 @@
 				}
 				$count++;
 			}
-
-		} else {
-			$menu_list = '<!-- no menu defined in location "'.$theme_location.'" -->';
+		
 		}
-		echo $menu_list;
+	// End Footer Nav Walke
+
+	} else {
+		$menu_list = '<!-- no menu defined in location "'.$theme_location.'" -->';
 	}
-// End Footer Nav Walker
+	echo $menu_list;
+}
+
 
 ?>

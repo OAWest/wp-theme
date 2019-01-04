@@ -4,7 +4,7 @@ Theme URI: https://github.com/OAWest/wp-theme
 Author: Western Region, Order of the Arrow
 Author URI: http://western.oa-bsa.org/
 Description: Designed for use by the Western Region, Order of the Arrow, and its sections.
-Version: 2018.12.26
+Version: 2019.01.04
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: WR
@@ -547,34 +547,53 @@ a.banner {
   @media (min-width: 768px) {
     .navbar-light .container .navbar-header .navbar-brand {
       width: 240px; } }
-  .navbar-light .container ul.navbar-nav > li > a {
+	  
+  .navbar-light .container ul.navbar-nav .dropdown-menu {
+    font-size: inherit;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.075);
+	border: 0px solid transparent;
+	border-radius: 0px;
+	margin-top: 18px;
+	padding: 0px;
+	}
+  .navbar-light .container ul.navbar-nav > li > a,
+  .navbar-light .container ul.navbar-nav > li > ul > li > a {
     border: none;
     color: inherit;
     text-decoration: none;
     margin-top: 10px;
 	margin-bottom: 10px;
     padding: 10px 15px;}
-    .navbar-light .container ul.navbar-nav > li > a:hover {
+    .navbar-light .container ul.navbar-nav > li > a:hover,
+	.navbar-light .container ul.navbar-nav > li > ul > li > a:hover {
       background: none; }
-  .navbar-light .container ul.navbar-nav > li:hover > a {
+  .navbar-light .container ul.navbar-nav > li:hover > a,
+  .navbar-light .container ul.navbar-nav > li > ul > li:hover{
     -moz-transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
     -ms-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     background-color: rgba(219, 183, 128, 0.2); }
-  .navbar-light .container .sidenav {
+  .navbar-light .container ul.navbar-nav > li > ul > li {
+	border-bottom: 1px solid #eee;
+	padding: 8px 5px 8px 14px;
+	text-indent: -14px;
+  }
+  
+@media screen and (max-width: 1200px) {
+  .navbar-light .container #navbar {
+	display:none;
     height: 100%;
-    width: 0;
+    width: 250px;
     position: fixed;
     z-index: 100;
     top: 0;
     left: 0;
     background-color: #1a1a1a;
     overflow-x: hidden;
-    transition: 0.5s;
     padding-top: 50px; }
-    .navbar-light .container .sidenav a {
+    .navbar-light .container #navbar a {
       padding: 8px 8px 8px 32px;
       text-decoration: none;
       font-size: 25px;
@@ -583,19 +602,38 @@ a.banner {
       transition: 0.3s;
       border-bottom: 0px;
       white-space: nowrap; }
-      .navbar-light .container .sidenav a:hover {
+    .navbar-light .container #navbar a:hover {
         color: #fff; }
-  .navbar-light .container .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px !important;
-    margin-left: 50px; }
+	.navbar-light .container ul.navbar-nav > li > a,
+	.navbar-light .container ul.navbar-nav > li > ul > li > a {
+		margin: 0px;
+	}
+	.navbar-light .container ul.navbar-nav > li > ul > li {
+		padding-top: 0px;
+		padding-bottom: 0px;
+		border-bottom: 0px solid transparent;
+	}
+	.navbar-light .container ul.navbar-nav > li:hover > a,
+	.navbar-light .container ul.navbar-nav > li > ul > li:hover{
+		background-color: rgb(128, 0, 0);
+	}
+	
+	.navbar-light .container #navbar .dropdown-menu {
+		background-color:transparent;
+		margin-top: 0px;
+	}
+	.navbar-light .container #navbar .dropdown-menu li a {
+		font-size: 18px;
+		text-indent: 0px;
+	}
+	
   @media screen and (max-height: 480px) {
-    .navbar-light .container .sidenav {
+    .navbar-light .container #navbar {
       padding-top: 15px; }
-      .navbar-light .container .sidenav a {
-        font-size: 18px; } }
+      .navbar-light .container #navbar a {
+        font-size: 18px; }
+	}
+}
 
 
 /**

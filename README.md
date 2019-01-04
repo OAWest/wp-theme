@@ -4,6 +4,10 @@ Welcome to the public repository for the Western Region, Order of the Arrow Word
 
 ## Changelog
 
+2019.01.04
+- Dropdown menu bar support
+- Cleaned up CSS
+
 2018.12.16
 - Custom login screen
 - Fixed tripple menu item bug

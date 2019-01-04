@@ -18,56 +18,22 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="/"></a>
     </div>
-	<button type="button" class="navbar-toggler" onclick="openNav()" aria-expanded="false" aria-controls="navbar">
+	<button type="button" class="navbar-toggler" data-toggle="slide-collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 		<span class="navbar-toggler-icon"></span>
 	</button>
+	
+	<div id="navbar" class="navbar-collapse slide-collapse">
+		<?php clean_custom_menu("nav_menu"); ?>
+	</div>
 
-		<?php 
-		$defaults = array(
-			'theme_location'  => '',
-			'menu'            => '',
-			'container'       => 'div',
-			'container_class' => 'navbar-collapse collapse',
-			'container_id'    => '',
-			'menu_class'      => 'navbar-nav ml-auto',
-			'menu_id'         => '',
-			'echo'            => true,
-			'fallback_cb'     => 'false',
-			'before'          => '',
-			'after'           => '',
-			'link_before'     => '',
-			'link_after'      => '',
-			'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-			'depth'           => 1,
-			'walker'          => ''
-		);
-		
-		wp_nav_menu( $defaults );
-		//<ul id="menu-main" class="nav navbar-nav navbar-right">
-		?>
-
-    <div id="navbar" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
-      
-        <?php 
-		$menuParameters = array(
-		  'container'       => false,
-		  'echo'            => false,
-		  'items_wrap'      => '%3$s',
-		  'depth'           => 1
-		);
-	  echo strip_tags(wp_nav_menu( $menuParameters ), '<a>' );
-	  ?>
-      
-    </div>
-    <script>
-      function openNav() {
-	    document.getElementById("navbar").style.width = "250px";
-	  }
-      function closeNav() {
-        document.getElementById("navbar").style.width = "0";
-      }
-    </script>
+	<script>
+	// mobile menu slide from the left
+$('[data-toggle="slide-collapse"]').on('click', function() {
+    $navMenuCont = $($(this).data('target'));
+    $navMenuCont.animate({'width':'toggle'}, 350);
+});
+	</script>
+	
   </div>
 </nav>
 
