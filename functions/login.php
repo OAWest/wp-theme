@@ -18,8 +18,10 @@
 function custom_dashboard_help() {
 	$theme_version   = wp_get_theme()->get('Version');
 	$current_version = "";
+	
+	$url = "https://raw.githubusercontent.com/OAWest/wp-theme/master/style.css?".date_timestamp_get(date_create());
 
-	$git_file = fopen("https://raw.githubusercontent.com/OAWest/wp-theme/master/style.css", "r");
+	$git_file = fopen($url, "r");
 	if ($git_file) {
 		while (($line = fgets($git_file)) !== false) {
 			if (substr($line, 0, 9)=="Version: ") {
