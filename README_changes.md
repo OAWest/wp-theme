@@ -5,6 +5,8 @@
 
 2019.01.05
 - Update reminder on administrative dashboard
+- Update theme screenshot
+- Bug Fix - width 1200px navbar
 
 2019.01.04
 - Dropdown menu bar support
