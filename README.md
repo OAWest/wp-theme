@@ -4,21 +4,10 @@ Welcome to the public repository for the Western Region, Order of the Arrow Word
 
 ## Changelog
 
-2019.01.04
-- Dropdown menu bar support
-- Cleaned up CSS
+2019.01.05
+- Update reminder on administrative dashboard
 
-2018.12.16
-- Custom login screen
-- Fixed tripple menu item bug
-
-2018.11.11
-- Updated bootstrap version from 3.3.7 to 4.1.3
-- Fixed Footer Menu Display Crowding
-- Updated Pagination
-- Removed featured articles from displaying on sub-pages
-- Added login security (prevent displaying when username is incorrect)
-- Automatically adds img-fluid and img-thumbnail class to images
+[View More](https://github.com/OAWest/wp-theme/README_changes.md)
 
 ## Fork Us
 

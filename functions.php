@@ -33,11 +33,11 @@ require_once get_template_directory() . '/functions/navbars.php';
 
 
 // Start add bootstrap 4 img-fluid class
-function add_fluid_image_class ($class){
-    $class .= ' img-fluid img-thumbnail';
-    return $class;
-}
-add_filter('get_image_tag_class','add_fluid_image_class');
+	function add_fluid_image_class ($class){
+		$class .= ' img-fluid img-thumbnail';
+		return $class;
+	}
+	add_filter('get_image_tag_class','add_fluid_image_class');
 // End add bootstrap 4 img-fluid class
 
 

@@ -14,6 +14,47 @@
 // End show less info to users on failed login for security.
 
 
+// Start Add Custom Widget
+function custom_dashboard_help() {
+	$theme_version   = wp_get_theme()->get('Version');
+	$current_version = "";
+
+	$git_file = fopen("https://raw.githubusercontent.com/OAWest/wp-theme/master/style.css", "r");
+	if ($git_file) {
+		while (($line = fgets($git_file)) !== false) {
+			if (substr($line, 0, 9)=="Version: ") {
+				$current_version = substr($line, 9, strlen($line));
+				$current_version = strip_tags($current_version);
+				$current_version = str_ireplace(array("\r","\n",'\r','\n'),'', $current_version);
+				
+				if($theme_version == $current_version) {
+					$message = "You are running the current version of the theme <i>$theme_version</i>";
+				}
+				else {
+					$message = "<h2 style=\"background-color:rgb(128, 0, 0); color:white; padding:15px;\">An update is available for your theme. <a href=\"https://github.com/OAWest/wp-theme\" target=\"_blank\" style=\"color: gold;text-decoration: none;\">Version $current_version</a></h2>";
+				}
+				break;
+			}
+		}
+	} else {
+		$message = 'To update to the current version, please visit <a href="https://github.com/OAWest/wp-theme" target="_blank">Github.com</a>';
+	} 
+	fclose($git_file);
+	
+	echo
+		"<p>Welcome to the Western Region WordPress Theme!</p>".
+		"<p>Need help? Contact the development team at:<br/><a href=\"mailto:Webmaster@western.oa-bsa.org\">Webmaster@western.oa-bsa.org</a></p>".
+		"<div style=\"width:100%; text-align:center;\"><img src=\"".get_bloginfo('template_directory') . "/images/logos/logo.jpg\" style=\"max-width:100%; width:150px;\"></div>".
+		"<p>$message</p>";
+}
+function my_custom_dashboard_widgets() {
+	global $wp_meta_boxes;
+	wp_add_dashboard_widget('custom_help_widget', 'Western Region WordPress Theme', 'custom_dashboard_help');
+}
+add_action('wp_dashboard_setup', 'my_custom_dashboard_widgets');
+// End Add Custom Widget
+
+
 // Start Changing the login theme
 	function my_login_logo() {
 			
