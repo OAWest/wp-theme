@@ -6,6 +6,8 @@ Welcome to the public repository for the Western Region, Order of the Arrow Word
 
 2019.01.05
 - Update reminder on administrative dashboard
+- Update theme screenshot
+- Bug Fix - width 1200px navbar
 
 [View More](https://github.com/OAWest/wp-theme/README_changes.md)
 

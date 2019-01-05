@@ -32,6 +32,9 @@
 					if($theme_version == $current_version) {
 						$message = "You are running the current version of the theme <i>$theme_version</i>";
 					}
+					else if($theme_version=='WR_Child') {
+						$message = "You are running the current version of the theme <i>$current_version</i>";
+					}
 					else {
 						$message = "<h2 style=\"background-color:rgb(128, 0, 0); color:white; padding:15px;\">An update is available for your theme. <a href=\"https://github.com/OAWest/wp-theme\" target=\"_blank\" style=\"color: gold;text-decoration: none;\">Version $current_version</a></h2>";
 					}
