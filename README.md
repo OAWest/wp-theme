@@ -9,7 +9,7 @@ Welcome to the public repository for the Western Region, Order of the Arrow Word
 - Update theme screenshot
 - Bug Fix - width 1200px navbar
 
-[View More](https://github.com/OAWest/wp-theme/README_changes.md)
+[View More](https://github.com/OAWest/wp-theme/blob/master/README_changes.md)
 
 ## Fork Us
 
