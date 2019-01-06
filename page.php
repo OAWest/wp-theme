@@ -24,7 +24,7 @@
                 <h1 class="post-title" itemprop="name headline"><?php the_title(); ?></h1>
 				<hr>
 				<div class="post-content" itemprop="articleBody">
-					<?php the_content(__('<div class="read-more"><p class="btn btn-block btn-default">Read More</p></div>')); ?>
+					<?php the_content(); ?>
 				</div>
               </div>
 			  <div class="card-footer">

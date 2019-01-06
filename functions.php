@@ -22,6 +22,10 @@ require_once get_template_directory() . '/functions/navbars.php';
 	add_filter( 'the_content_more_link', 'remove_more_link_scroll' );
 // End Remove Read-more #jumpID
 
+function modify_read_more_link() {
+    return '<a class="btn btn-block btn-default" more-link href="' . get_permalink() . '">Read More</a>';
+}
+add_filter( 'the_content_more_link', 'modify_read_more_link' );
 
 // Start add scripts to wp_footer()
 	function child_theme_footer_script() {

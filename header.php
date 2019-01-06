@@ -21,19 +21,16 @@
 	<button type="button" class="navbar-toggler" data-toggle="slide-collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-	
 	<div id="navbar" class="navbar-collapse slide-collapse">
 		<?php clean_custom_menu("nav_menu"); ?>
 	</div>
-
 	<script>
-	// mobile menu slide from the left
-$('[data-toggle="slide-collapse"]').on('click', function() {
-    $navMenuCont = $($(this).data('target'));
-    $navMenuCont.animate({'width':'toggle'}, 350);
-});
+		// mobile menu slide from the left
+		$('[data-toggle="slide-collapse"]').on('click', function() {
+			$navMenuCont = $($(this).data('target'));
+			$navMenuCont.animate({'width':'toggle'}, 350);
+		});
 	</script>
-	
   </div>
 </nav>
 

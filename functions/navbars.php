@@ -26,7 +26,7 @@ function clean_custom_menu( $theme_location ) {
 	 
 			$count = 0;
 			$submenu = false;
-			$menu_list = "<ul id=\"menu-header\" class=\"navbar-nav ml-auto\">";
+			$menu_list = "<ul id=\"menu-header\" class=\"navbar-nav ml-auto\">\n";
 			
 			foreach( (array)$menu_items as $menu_item ) {
 				 
@@ -53,11 +53,11 @@ function clean_custom_menu( $theme_location ) {
 				
 				// Otherwise a regular menu item
 				else {
-					$menu_list .= "\t<li><a href=\"$link\">$title</a></li>\n";
+					$menu_list .= "\t\t\t<li><a href=\"$link\">$title</a></li>\n";
 				}
 				$count++;
 			}
-			$menu_list .= "</ul>";
+			$menu_list .= "\t\t</ul>\n";
 		}
 	// End Head Navigation Walker
 
