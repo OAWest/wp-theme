@@ -13,6 +13,9 @@ require_once get_template_directory() . '/functions/navbars.php';
 	@ini_set( 'max_execution_time', '300' );
 // End Increase the max upload size
 
+// Start Add Title Support
+add_theme_support('title-tag');
+// End Add Title Support
 
 // Start Remove Read-More #jumpID
 	function remove_more_link_scroll( $link ) {

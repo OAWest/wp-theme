@@ -24,7 +24,7 @@ function govpress_customize_register( $wp_customize ) {
 
 	// Add a header logo image control option
 	$wp_customize->add_setting( 'header_logo', array(
-		'default' => get_bloginfo('template_directory') . '/images/logos/western-region-white.png',
+		'default' => get_template_directory_uri() . '/images/logos/western-region-white.png',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'header_logo', array(
 	
@@ -35,7 +35,7 @@ function govpress_customize_register( $wp_customize ) {
 	
 	// Add a nav logo image control option
 	$wp_customize->add_setting( 'nav_logo', array(
-		'default' => get_bloginfo('template_directory') . '/images/logos/western-region.png',
+		'default' => get_template_directory_uri() . '/images/logos/western-region.png',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'nav_logo', array(
 	
@@ -46,7 +46,7 @@ function govpress_customize_register( $wp_customize ) {
 	
 	// Add a header background image control option
 	$wp_customize->add_setting( 'header_background', array(
-		'default' => get_bloginfo('template_directory') . '/images/banners/mountains.jpg',
+		'default' => get_template_directory_uri() . '/images/banners/mountains.jpg',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'header_background', array(
 	
@@ -234,7 +234,9 @@ add_theme_support( 'custom-background', $defaults );
 					}
 					else {
 							echo "\t\t\t\t<a target=\"_blank\" class=\"$active_site\" href=\"".esc_url( get_theme_mod( $active_site) )."\">";
-							echo "<i class=\"".esc_attr( $class )."\" title=\""; printf( __('%s icon', 'text-domain'), $active_site ); echo "\"></i>";
+							echo "<i class=\"".esc_attr( $class )."\" title=\"";
+							printf( __('%s icon', 'text-domain'), $active_site );
+							echo "\"></i>";
 							echo "</a>\n";
 					}
 				}

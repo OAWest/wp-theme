@@ -21,9 +21,14 @@
 		
 		$url = "https://raw.githubusercontent.com/OAWest/wp-theme/master/style.css?".date_timestamp_get(date_create());
 
-		$git_file = fopen($url, "r");
+		$git_file = wp_remote_get($url);
+		$git_file = wp_remote_retrieve_body($git_file);
+		$git_file = explode("\n", $git_file);
 		if ($git_file) {
-			while (($line = fgets($git_file)) !== false) {
+			$iter = 0;
+			$git_file_size = sizeof($git_file);
+			while ($iter < $git_file_size) {
+				$line = $git_file[$iter];
 				if (substr($line, 0, 9)=="Version: ") {
 					$current_version = substr($line, 9, strlen($line));
 					$current_version = strip_tags($current_version);
@@ -40,16 +45,16 @@
 					}
 					break;
 				}
+				$iter++;
 			}
 		} else {
 			$message = 'To update to the current version, please visit <a href="https://github.com/OAWest/wp-theme" target="_blank">Github.com</a>';
 		} 
-		fclose($git_file);
 		
 		echo
 			"<p>Welcome to the Western Region WordPress Theme!</p>".
 			"<p>Need help? Contact the development team at:<br/><a href=\"mailto:Webmaster@western.oa-bsa.org\">Webmaster@western.oa-bsa.org</a></p>".
-			"<div style=\"width:100%; text-align:center;\"><img src=\"".get_bloginfo('template_directory') . "/images/logos/logo.jpg\" style=\"max-width:100%; width:150px;\"></div>".
+			"<div style=\"width:100%; text-align:center;\"><img src=\"".get_template_directory_uri()."/images/logos/logo.jpg\" style=\"max-width:100%; width:150px;\"></div>".
 			"<p>$message</p>";
 	}
 	function my_custom_dashboard_widgets() {
@@ -68,10 +73,10 @@
 				$background_url = esc_url(get_theme_mod('header_background'));
 			}
 			else {
-				$background_url = get_bloginfo('template_directory') . '/images/banners/mountains.jpg';
+				$background_url = get_template_directory_uri(). '/images/banners/mountains.jpg';
 			}
 			*/
-			$background_url = get_bloginfo('template_directory') . '/images/banners/mountains.jpg';
+			$background_url = get_template_directory_uri().'/images/banners/mountains.jpg';
 		?>
 		<style type="text/css">
 			body.login {

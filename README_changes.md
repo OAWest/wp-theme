@@ -3,6 +3,9 @@
 
 ---
 
+2019.01.21
+- Security bug fixes
+
 2019.01.05
 - Update reminder on administrative dashboard
 - Update theme screenshot
