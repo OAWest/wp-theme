@@ -6,6 +6,7 @@ Welcome to the public repository for the Western Region, Order of the Arrow Word
 
 2019.01.21
 - Custom Login page background
+- Updated Featured Articles Layout
 - CSS Updates
 - Remove WP version number
 - Security bug fixes

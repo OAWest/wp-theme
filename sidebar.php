@@ -9,12 +9,26 @@
 	<div class="container">
 		<div class="row">
 			<?php
+			
+			
+				$args = [
+						'post__in' => get_option('sticky_posts'),
+						'post_status' => 'publish'
+				];
+
+				$posts = new WP_Query($args);
+				$sticky_count = $posts->post_count;
+			
 				$myCount = 1; //Limit to the newest 3 sticky posts
 				while ( $the_query->have_posts() && $myCount <= 3) : $the_query->the_post();
 				$myCount = $myCount + 1;
 			?>
 
-			<div class="col-xs-12 col-sm-4">
+			<?php 
+				if($sticky_count > 2) { echo "<div class=\"col-xs-12 col-sm-6 col-md-4\">"; }
+				else if($sticky_count==2) { echo "<div class=\"col-xs-12 col-sm-6\">"; }
+				else if($sticky_count==1) { echo "<div class=\"col-xs-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3\">"; }
+			?>
 				<div class="card post">
 					<?php
 						if ( has_post_thumbnail() ) { // check if the post has a featured image assigned to it.

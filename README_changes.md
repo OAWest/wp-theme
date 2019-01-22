@@ -5,6 +5,7 @@
 
 2019.01.21
 - Custom Login page background
+- Updated Featured Articles Layout
 - CSS Updates
 - Remove WP version number
 - Security bug fixes
