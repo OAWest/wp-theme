@@ -7,19 +7,20 @@ require_once get_template_directory() . '/functions/pagination.php';
 require_once get_template_directory() . '/functions/navbars.php';
 
 // Start Add Title Support
-function filter_wp_title( $title ) {
-	$blog_title = get_bloginfo('name');
-	$page_title = single_post_title();
-	
-    if(is_front_page()){
-        return $blog_title;
-    }
-	else {         
-		return "$page_title | $blog_title";
-    }
-}
-add_filter( 'wp_title', 'filter_wp_title' );
+	function filter_wp_title( $title ) {
+		$blog_title = get_bloginfo('name');
+		$page_title = single_post_title();
+		
+		if(is_front_page()){
+			return $blog_title;
+		}
+		else {         
+			return "$page_title | $blog_title";
+		}
+	}
+	add_filter( 'wp_title', 'filter_wp_title' );
 // End Add Title Support
+
 
 // Start Remove Read-More #jumpID
 	function remove_more_link_scroll( $link ) {
@@ -29,10 +30,14 @@ add_filter( 'wp_title', 'filter_wp_title' );
 	add_filter( 'the_content_more_link', 'remove_more_link_scroll' );
 // End Remove Read-more #jumpID
 
-function modify_read_more_link() {
-    return '<a class="btn btn-block btn-default" more-link href="' . get_permalink() . '">Read More</a>';
-}
-add_filter( 'the_content_more_link', 'modify_read_more_link' );
+
+// Start Add Read More Link
+	function modify_read_more_link() {
+		return '<a class="btn btn-block btn-default" more-link href="' . get_permalink() . '">Read More</a>';
+	}
+	add_filter( 'the_content_more_link', 'modify_read_more_link' );
+// End Add Read More Link
+
 
 // Start add scripts to wp_footer()
 	function child_theme_footer_script() {
