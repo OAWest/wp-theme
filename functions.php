@@ -6,15 +6,19 @@ require_once get_template_directory() . '/functions/login.php';
 require_once get_template_directory() . '/functions/pagination.php';
 require_once get_template_directory() . '/functions/navbars.php';
 
-
-// Start Increase the max upload size
-	@ini_set( 'upload_max_size' , '64M' );
-	@ini_set( 'post_max_size', '64M');
-	@ini_set( 'max_execution_time', '300' );
-// End Increase the max upload size
-
 // Start Add Title Support
-add_theme_support('title-tag');
+function filter_wp_title( $title ) {
+	$blog_title = get_bloginfo('name');
+	$page_title = single_post_title();
+	
+    if(is_front_page()){
+        return $blog_title;
+    }
+	else {         
+		return "$page_title | $blog_title";
+    }
+}
+add_filter( 'wp_title', 'filter_wp_title' );
 // End Add Title Support
 
 // Start Remove Read-More #jumpID

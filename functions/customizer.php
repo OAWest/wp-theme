@@ -31,7 +31,13 @@ function govpress_customize_register( $wp_customize ) {
     	'label'    => __( 'Header logo image', 'govpress' ),
 		'section'  => 'site_images',
 		'settings' => 'header_logo',
-	) ) );	
+	) ) );
+	
+	// Add a default favicon logo image control option
+	$wp_customize->add_setting( 'site_icon', array(
+		'default' => get_template_directory_uri() . '/images/logos/favicon.png',
+	) );
+	
 	
 	// Add a nav logo image control option
 	$wp_customize->add_setting( 'nav_logo', array(
@@ -53,6 +59,18 @@ function govpress_customize_register( $wp_customize ) {
     	'label'    => __( 'Header background image', 'govpress' ),
 		'section'  => 'site_images',
 		'settings' => 'header_background',
+	) ) );
+	
+	
+	// Add a login background image control option
+	$wp_customize->add_setting( 'login_background', array(
+		'default' => get_template_directory_uri() . '/images/banners/mountains.jpg',
+	) );
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'login_background', array(
+	
+    	'label'    => __( 'Login page background image', 'govpress' ),
+		'section'  => 'site_images',
+		'settings' => 'login_background',
 	) ) );
 	
 	// Add a primary color editor control option

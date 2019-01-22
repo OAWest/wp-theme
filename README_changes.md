@@ -4,6 +4,9 @@
 ---
 
 2019.01.21
+- Custom Login page background
+- CSS Updates
+- Remove WP version number
 - Security bug fixes
 
 2019.01.05

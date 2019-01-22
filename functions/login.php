@@ -68,15 +68,13 @@
 // Start Changing the login theme
 	function my_login_logo() {
 			
-			/* Optional Custom Login background
-			if (!empty(get_theme_mod('header_background'))) {
-				$background_url = esc_url(get_theme_mod('header_background'));
+			/* Custom Login background */
+			if (!empty(get_theme_mod('login_background'))) {
+				$background_url = esc_url(get_theme_mod('login_background'));
 			}
 			else {
 				$background_url = get_template_directory_uri(). '/images/banners/mountains.jpg';
 			}
-			*/
-			$background_url = get_template_directory_uri().'/images/banners/mountains.jpg';
 		?>
 		<style type="text/css">
 			body.login {

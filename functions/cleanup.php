@@ -32,4 +32,13 @@
 		wp_enqueue_script('jquery');
 	}
 // End update old jquery link
+
+// Start Remove WordPress Version
+	remove_action('wp_head', 'wp_generator');
+	function remove_WP_version(){
+		return '';
+	}
+	add_filter('the_generator', 'remove_WP_version');
+// End Remove WordPress Version
+
 ?>

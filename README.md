@@ -5,6 +5,9 @@ Welcome to the public repository for the Western Region, Order of the Arrow Word
 ## Changelog
 
 2019.01.21
+- Custom Login page background
+- CSS Updates
+- Remove WP version number
 - Security bug fixes
 
 [View More](https://github.com/OAWest/wp-theme/blob/master/README_changes.md)
