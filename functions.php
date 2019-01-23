@@ -14,6 +14,9 @@ require_once get_template_directory() . '/functions/navbars.php';
 		if(is_front_page()){
 			return $blog_title;
 		}
+		else if(is_404()){
+			return "404 Error | $blog_title";
+		}
 		else {         
 			return "$page_title | $blog_title";
 		}

@@ -7,6 +7,7 @@
             <div class="card post">
               <div class="card-body">
                 <h1 class="post-title" itemprop="name headline">404 Error</h1>
+				<hr>
 				<div class="post-content" itemprop="articleBody">
 					Unfortunately, we cannot find the page you are looking for.<br />
 					Please press the back button on your browser, or <a href="/">click here</a> to return to the homepage.<br />
