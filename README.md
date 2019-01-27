@@ -4,12 +4,11 @@ Welcome to the public repository for the Western Region, Order of the Arrow Word
 
 ## Changelog
 
-2019.01.21
-- Custom Login page background
-- Updated Featured Articles Layout
-- CSS Updates
-- Remove WP version number
-- Security bug fixes
+2019.01.27
+- Added Gutenberg Default Colors
+- Fixed Admin Navbar Display Issue
+- Added Language Support
+- Change the number of posts displayed on the homepage with "Settings -> Reading"
 
 [View More](https://github.com/OAWest/wp-theme/blob/master/README_changes.md)
 

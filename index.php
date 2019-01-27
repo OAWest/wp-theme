@@ -28,7 +28,7 @@ get_header(); ?>
 				$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 				$args = array(
 					'post__not_in' => get_option( 'sticky_posts' ),
-					'posts_per_page' => 10,
+					'posts_per_page' => get_option( 'posts_per_page' ),
 					'paged' => $paged
 				);
 				$wp_query = new WP_Query( $args );

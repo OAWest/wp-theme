@@ -1,4 +1,4 @@
-<header class="banner cover overlay mountains">
+<header class="banner cover overlay mountains<?php if(is_admin_bar_showing()) { echo ' navbar-admin-space'; } ?>">
   <div class="inner">
     <header>
       <h2><div class="logo-western-region-white"></div></h2>

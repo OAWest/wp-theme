@@ -3,6 +3,12 @@
 
 ---
 
+2019.01.27
+- Added Gutenberg Default Colors
+- Fixed Admin Navbar Display Issue
+- Added Language Support
+- Change the number of posts displayed on the homepage with "Settings -> Reading"
+
 2019.01.21
 - Custom Login page background
 - Updated Featured Articles Layout

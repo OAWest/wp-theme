@@ -4,7 +4,7 @@ Theme URI: https://github.com/OAWest/wp-theme
 Author: Western Region, Order of the Arrow
 Author URI: http://western.oa-bsa.org/
 Description: Designed for use by the Western Region, Order of the Arrow, and its sections.
-Version: 2019.01.21
+Version: 2019.01.27
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: WR
@@ -691,6 +691,10 @@ only screen and (min-resolution: 1.3dppx) {
 /**
  * Bootstrap navbar
  */
+.navbar-admin-space {
+	top: 43px;
+}
+
 .navbar-light {
     background-color: #fff;
     border-color: #eeeeee;
@@ -730,10 +734,19 @@ only screen and (min-resolution: 1.3dppx) {
     }
 }
 
+@media (max-width: 310px) {
+	.navbar-light .container .navbar-header .navbar-brand {
+		width: 175px;
+	}
+}
+
 @media (min-width: 768px) {
     .navbar-light .container .navbar-header .navbar-brand {
         width: 240px;
     }
+	.navbar-admin-space {
+		top: 32px;
+	}
 }
 
 .navbar-light .container ul.navbar-nav .dropdown-menu {
@@ -836,6 +849,25 @@ only screen and (min-resolution: 1.3dppx) {
             font-size: 18px;
         }
     }
+}
+
+@media screen and (max-width: 345px) {
+    .navbar-light .container #navbar {
+        width: 200px;
+    }
+	
+	.navbar-light .container #navbar a {
+		font-size: 20px;
+	}
+}
+
+/**
+ * WordPress Admin Navbar
+ */
+#wpadminbar {
+	width: 100%;
+	max-width: calc(100% - 17px);
+	min-width: 275px !important;
 }
 
 

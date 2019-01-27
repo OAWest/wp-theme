@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html <?php language_attributes(); ?>>
 <head>
-  <meta charset="utf-8">
+  <meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?php wp_title(); ?></title>
@@ -12,8 +12,9 @@
   <?php wp_head(); ?>
 </head>
 
-<body>
-<nav class="navbar navbar-light navbar-expand-xl">
+<body <?php body_class(); ?>>
+
+<nav class="navbar navbar-light navbar-expand-xl<?php if(is_admin_bar_showing()) { echo ' navbar-admin-space'; } ?>">
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="/"></a>

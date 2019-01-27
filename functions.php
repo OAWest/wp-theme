@@ -5,6 +5,7 @@ require_once get_template_directory() . '/functions/customizer.php';
 require_once get_template_directory() . '/functions/login.php';
 require_once get_template_directory() . '/functions/pagination.php';
 require_once get_template_directory() . '/functions/navbars.php';
+require_once get_template_directory() . '/functions/blocks-filter.php';
 
 // Start Add Title Support
 	function filter_wp_title( $title ) {
@@ -44,7 +45,6 @@ require_once get_template_directory() . '/functions/navbars.php';
 
 // Start add scripts to wp_footer()
 	function child_theme_footer_script() {
-		show_admin_bar( false );
 		require_once('footer.php');
 	}
 	add_action( 'wp_footer', 'child_theme_footer_script' );
