@@ -3,16 +3,11 @@
  * Login Scripts
  */
 
-// Start show less info to users on failed login for security.
-	// (Will not let a valid username be known.)
-	if ( ! function_exists('show_less_login_info') ) {
-	  function show_less_login_info() {
-		  return "<strong>ERROR</strong>: Incorrect Username or Password";
-	  }
-	}
-	add_filter( 'login_errors', 'show_less_login_info' );
-// End show less info to users on failed login for security.
-
+	// Show less info to users on failed login for security.
+	// Will not let a valid username be known.
+	add_filter( 'login_errors', function() {
+		return "<strong>ERROR</strong>: Incorrect Username or Password";
+	});
 
 // Start Add Custom Widget
 	function custom_dashboard_help() {
@@ -100,28 +95,16 @@
 // End Changing the login theme
 
 
-// Start Replace WordPress URL with Website URL
-function my_login_logo_url() {
-	return home_url();
-}
-add_filter( 'login_headerurl', 'my_login_logo_url' );
-// End Replace WordPress URL with Website URL
+	// Start Replace WordPress URL with Website URL
+	add_filter( 'login_headerurl', home_url() );
 
+	// Replace WordPress title with Website title
+	add_filter( 'login_headertitle', get_bloginfo('description') );
 
-// Start Replace WordPress title with Website title
-function my_login_logo_url_title() {
-    return get_bloginfo( 'description' );
-}
-add_filter( 'login_headertitle', 'my_login_logo_url_title' );
-// End Replace WordPress title with Website title
-
-
-// Start Disable Sign-up page
-	function rbz_prevent_multisite_signup() {
+	// Disable Sign-up page
+	add_action( 'signup_header', function() {
 		wp_redirect(site_url());
 		die();
-	}
-	add_action( 'signup_header', 'rbz_prevent_multisite_signup' );
-// End Disable Sign-up page
+	});
 
 ?>

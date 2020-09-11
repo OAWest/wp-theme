@@ -7,19 +7,7 @@
 
           <div class="col-xs-12 col-sm-10 offset-sm-1">
             <div class="card post">
-			<?php
-			if ( has_post_thumbnail() ) { // check if the post has a featured image assigned to it.
-				echo "<img src=\"";
-				the_post_thumbnail_url( 'medium_large' ); // 768px x 768px resolution
-				echo "\" srcset=\"";
-				the_post_thumbnail_url( 'medium' ); // 300px x 300px medium resolution
-				echo " 300w, ";
-				the_post_thumbnail_url( 'medium_large' ); // 300px x 300px medium resolution
-				echo " 768w, ";
-				the_post_thumbnail_url( 'full' ); // 1024px x 1024px medium resolution
-				echo " 1024w\" width=\"100%\">";
-			}
-			?>
+				<?php get_featured_image(); ?>
               <div class="card-body">
                 <h1 class="post-title" itemprop="name headline"><?php the_title(); ?></h1>
 				<hr>
@@ -32,11 +20,15 @@
 				  <time datetime="<?php the_time('Y-m-d\TH:i:sP') ?>" itemprop="datePublished">
 					Published <?php the_time('F jS, Y') ?>
 				  </time>
-				  <?php if(is_user_logged_in()):
-							edit_post_link('edit'); ?> <br> by <?php the_author();
-						endif ?> 
+				  <?php
+				  	if(is_user_logged_in()) {
+						edit_post_link('edit');
+						echo '<br> by ';
+						the_author();
+					}
+				  ?>
 				</div>
-			 </div>
+              </div>
             </div>
           </div>
 		  

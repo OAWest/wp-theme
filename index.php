@@ -36,21 +36,7 @@ get_header(); ?>
 			?>
 			<div class="col-xs-12 col-sm-6 grid-item">
 				<div class="card post">
-					<?php
-					if ( has_post_thumbnail() ) { // check if the post has a featured image assigned to it.
-						echo "<a class=\"post-link\" href=\"";
-						the_permalink();
-						echo "\"><img src=\"";
-						the_post_thumbnail_url( 'medium' ); // 300px x 300px resolution
-						echo "\" srcset=\"";
-						the_post_thumbnail_url( 'medium' ); // 300px x 300px medium resolution
-						echo " 300w, ";
-						the_post_thumbnail_url( 'large' ); // 640px x 640px medium resolution
-						echo " 640w, ";
-						the_post_thumbnail_url( 'full' ); // 1024px x 1024px medium resolution
-						echo " 1024w\" width=\"100%\"></a>";
-					}
-					?>
+					<?php get_featured_image(); ?>
 					<div class="card-body">
 						<h2>
 							<a class="post-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>

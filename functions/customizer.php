@@ -4,11 +4,6 @@
  */
 
  
- //Start Add featured image support
-add_theme_support( 'post-thumbnails' );
-//End Add featured image support
-
-
 //Start Add additional customizer color options
 function govpress_customize_register( $wp_customize ) {
 	// Remove the unused default customizer options
@@ -113,7 +108,6 @@ add_action( 'customize_register', 'govpress_customize_register' );
 function wpb_add_inline_css() {
 	
 	wp_enqueue_style( 'style', get_template_directory_uri() . '/style.css' );
-
 	
         //All the user input CSS settings as set in the plugin settings
 		$options = get_option( 'govpress', false );
@@ -138,31 +132,29 @@ function wpb_add_inline_css() {
   
 }
 add_action( 'wp_enqueue_scripts', 'wpb_add_inline_css' ); //Enqueue the CSS style
-
-add_action('get_header', 'remove_admin_login_header');
-function remove_admin_login_header() {
-	remove_action('wp_head', '_admin_bar_bump_cb');
-}
+add_action('get_header', remove_action('wp_head', '_admin_bar_bump_cb'));
 // End Add additional customizer color options
-
-
-$defaults = array(
-	'default-color'          => '',
-	'default-image'          => '',
-	'default-repeat'         => '',
-	'default-position-x'     => '',
-	'default-attachment'     => '',
-	'wp-head-callback'       => '_custom_background_cb',
-	'admin-head-callback'    => '',
-	'admin-preview-callback' => ''
-);
-add_theme_support( 'custom-background', $defaults );
 
 
 // Start Social Media Links
 	function my_customizer_social_media_array() {
 		/* store social site names in array */
-		$social_sites = array('facebook', 'twitter', 'snapchat', 'google-plus', 'flickr', 'pinterest', 'youtube', 'tumblr', 'dribbble', 'rss', 'linkedin', 'instagram', 'email', 'phone');
+		$social_sites = array(
+			'facebook' => 'fab fa-facebook-f',
+			'twitter' => 'fab fa-twitter',
+			'instagram' => 'fab fa-instagram',
+			'snapchat' => 'fab fa-snapchat-ghost',
+			'slack' => 'fab fa-slack-hash',
+			'discord'=> 'fab fa-discord',
+			'flickr' => 'fab fa-flickr',
+			'pinterest' => 'fab fa-pinterest-p',
+			'youtube' => 'fab fa-youtube',
+			'tumblr' => 'fab fa-tumblr',
+			'rss' => 'fas fa-rss',
+			'linkedin' => 'fab fa-linkedin-in',
+			'email' => 'fas fa-envelope',
+			'phone' => 'fas fa-phone'
+		);
 		return $social_sites;
 	}
 
@@ -172,94 +164,63 @@ add_theme_support( 'custom-background', $defaults );
 	function my_add_social_sites_customizer($wp_customize) {
 	 
 		$wp_customize->add_section( 'my_social_settings', array(
-				'title'    => __('Social Media Links', 'text-domain'),
-				'priority' => 35,
+			'title'    => __('Social Media Links', 'text-domain'),
+			'priority' => 35,
 		) );
 	 
 		$social_sites = my_customizer_social_media_array();
-		$priority = 5;
 	 
-		foreach($social_sites as $social_site) {
+		foreach($social_sites as $social_site => $fontawesome) {
 	 
 			if($social_site == 'email'){
 				$wp_customize->add_setting( "$social_site", array(
 					'type'              => 'theme_mod',
 					'capability'        => 'edit_theme_options',
 					'sanitize_callback' => 'sanitize_email'
-				) );
+				));
 			}
 			else if($social_site == 'phone'){
 				$wp_customize->add_setting( "$social_site", array(
 					'type'              => 'theme_mod',
 					'capability'        => 'edit_theme_options',
 					'sanitize_callback' => 'sanitize_key'
-				) );
+				));
 			}
 			else {
 				$wp_customize->add_setting( "$social_site", array(
 					'type'              => 'theme_mod',
 					'capability'        => 'edit_theme_options',
 					'sanitize_callback' => 'esc_url_raw'
-				) );
+				));
 			}
 	 
 			$wp_customize->add_control( $social_site, array(
-					'label'    => __( "$social_site url:", 'text-domain' ),
-					'section'  => 'my_social_settings',
-					'type'     => 'text',
-					'priority' => $priority,
-			) );
-	 
-			$priority = $priority + 5;
+				'label'    => __( "$social_site url:", 'text-domain' ),
+				'section'  => 'my_social_settings',
+				'type'     => 'text'
+			));
 		}
 	}
 
-	/* takes user input from the customizer and outputs linked social media icons */
+	// Takes user input from the customizer and outputs linked social media icons
+	// Used by banner.php
 	function my_social_media_icons() {
 		$social_sites = my_customizer_social_media_array();
 	 
 		/* any inputs that aren't empty are stored in $active_sites array */
-		foreach($social_sites as $social_site) {
+		foreach($social_sites as $social_site => $fontawesome) {
 			if( strlen( get_theme_mod( $social_site ) ) > 0 ) {
-				$active_sites[] = $social_site;
+				$active_sites[] = array($social_site, $fontawesome, esc_url(get_theme_mod( $social_site )));
 			}
 		}
-	 
 		/* for each active social site, add it as a list item */
-			if ( ! empty( $active_sites ) ) {
-	 
-				echo "<ul class='social-media-icons'>\n";
-	 
-				foreach ( $active_sites as $active_site ) {
-	 
-					/* setup the class */
-					$class = 'fa fa-' . $active_site;
-
-					if ( $active_site == 'snapchat' ) {
-							echo "\t\t\t\t<a target=\"_blank\" class=\"$active_site\" href=\"".esc_url( get_theme_mod( $active_site) )."\">";
-							echo "<i class=\"fa fa-snapchat-ghost\" title=\"snapchat icon\"></i>";
-							echo "</a>\n";
-					}
-					else if ( $active_site == 'email' ) {
-							echo "\t\t\t\t<a target=\"_blank\" class=\"$active_site\" href=\"mailto:".get_theme_mod($active_site)."\">";
-							echo "<i class=\"fa fa-envelope\" title=\"email icon\"></i>";
-							echo "</a>\n";
-					}
-					else if ( $active_site == 'phone' ) {
-							echo "\t\t\t\t<a target=\"_blank\" class=\"$active_site\" href=\"tel:".get_theme_mod($active_site)."\">";
-							echo "<i class=\"".esc_attr( $class )."\" title=\"phone icon\"></i>";
-							echo "</a>\n";
-					}
-					else {
-							echo "\t\t\t\t<a target=\"_blank\" class=\"$active_site\" href=\"".esc_url( get_theme_mod( $active_site) )."\">";
-							echo "<i class=\"".esc_attr( $class )."\" title=\"";
-							printf( __('%s icon', 'text-domain'), $active_site );
-							echo "\"></i>";
-							echo "</a>\n";
-					}
-				}
-				echo "\t\t\t</ul>\n";
+		if ( ! empty( $active_sites ) ) {
+			echo "<ul class='social-media-icons'>\n";
+			foreach($active_sites as $social_site) {
+				echo "\t\t\t\t<a target=\"_blank\" href=\"$social_site[2]\" title=\"$social_site[0]\"><i class=\"$social_site[1]\"></i></a>\n";
 			}
+			echo "\t\t\t</ul>\n";
+		}
 	}
 // End Socail Media Links
 

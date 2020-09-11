@@ -359,7 +359,7 @@ header.banner.mountains {
 
 header.banner.mountains::after {
     box-shadow: inset 0px 0px 100px rgba(0, 0, 20, 1);
-    background-image: url("images/banners/mountains.jpg");
+    background-image: url("assets/images/banners/mountains.jpg");
     background-size: cover;
 }
 
@@ -369,7 +369,7 @@ only screen and (-o-min-device-pixel-ratio: 1.3 / 1),
 only screen and (min-resolution: 125dpi),
 only screen and (min-resolution: 1.3dppx) {
     header.banner.mountains::after {
-        background-image: url("images/banners/mountains@2x.jpg");
+        background-image: url("assets/images/banners/mountains@2x.jpg");
         background-size: cover;
     }
 }
@@ -382,7 +382,7 @@ header.banner.overlay::before {
     bottom: 0;
     left: 0;
     background-color: rgba(100, 88, 98, .3);
-    background: url("images/banners/overlay.png") repeat top left;
+    background: url("assets/images/banners/overlay.png") repeat top left;
     z-index: 1;
 }
 
@@ -656,7 +656,7 @@ a.banner {
  * Western Region
  */
 .logo-western-region-white {
-    background-image: url("images/logos/western-region-white.png");
+    background-image: url("assets/images/logos/western-region-white.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center center;
@@ -671,7 +671,7 @@ only screen and (-o-min-device-pixel-ratio: 1.3 / 1),
 only screen and (min-resolution: 125dpi),
 only screen and (min-resolution: 1.3dppx) {
     .logo-western-region-white {
-        background-image: url("images/logos/western-region-white@2x.png");
+        background-image: url("assets/images/logos/western-region-white@2x.png");
         background-size: contain;
     }
 }
@@ -710,7 +710,7 @@ only screen and (min-resolution: 1.3dppx) {
 }
 
 .navbar-light .container .navbar-header .navbar-brand {
-    background-image: url("images/logos/western-region.png");
+    background-image: url("assets/images/logos/western-region.png");
     background-repeat: no-repeat;
     background-position-y: center;
     background-size: contain;
@@ -729,7 +729,7 @@ only screen and (-o-min-device-pixel-ratio: 1.3 / 1),
 only screen and (min-resolution: 125dpi),
 only screen and (min-resolution: 1.3dppx) {
     .navbar-light .container .navbar-header .navbar-brand {
-        background-image: url("images/logos/western-region@2x.png");
+        background-image: url("assets/images/logos/western-region@2x.png");
         background-size: contain;
     }
 }
