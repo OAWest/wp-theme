@@ -33,7 +33,6 @@ function govpress_customize_register( $wp_customize ) {
 		'default' => get_template_directory_uri() . '/images/logos/favicon.png',
 	) );
 	
-	
 	// Add a nav logo image control option
 	$wp_customize->add_setting( 'nav_logo', array(
 		'default' => get_template_directory_uri() . '/images/logos/western-region.png',
@@ -55,7 +54,6 @@ function govpress_customize_register( $wp_customize ) {
 		'section'  => 'site_images',
 		'settings' => 'header_background',
 	) ) );
-	
 	
 	// Add a login background image control option
 	$wp_customize->add_setting( 'login_background', array(
@@ -104,9 +102,8 @@ function govpress_customize_register( $wp_customize ) {
 add_action( 'customize_register', 'govpress_customize_register' );
 
 
-//Adding CSS inline style to an existing CSS stylesheet
-function wpb_add_inline_css() {
-	
+// Add inline CSS styles to an existing CSS stylesheet
+add_action( 'wp_enqueue_scripts', function() {
 	wp_enqueue_style( 'style', get_template_directory_uri() . '/style.css' );
 	
         //All the user input CSS settings as set in the plugin settings
@@ -125,15 +122,12 @@ function wpb_add_inline_css() {
 		if (!empty($options['primary_link_hover']) ) { $custom_css .= "  a:hover { color: ".$options['primary_link_hover']."; }\n";
 													   $custom_css .= "  .btn.btn-default:hover { color: ".$options['primary_link_hover']."; border-color: ".$options['primary_link_hover']."; background-color:transparent; }\n\t"; 
 													   $custom_css .= "  #header .social a:hover, #footer .social a:hover { color: ".$options['primary_link_hover']."; }\n\t"; }
-		
-  //Add the above custom CSS via wp_add_inline_style
+  // Add the above custom CSS via wp_add_inline_style
   wp_add_inline_style( 'style', $custom_css ); //Pass the variable into the main style sheet ID
-  
-  
-}
-add_action( 'wp_enqueue_scripts', 'wpb_add_inline_css' ); //Enqueue the CSS style
-add_action('get_header', remove_action('wp_head', '_admin_bar_bump_cb'));
-// End Add additional customizer color options
+});
+
+// Remove top margin created by admin bar
+remove_action('wp_head', '_admin_bar_bump_cb');
 
 
 // Start Social Media Links
@@ -158,11 +152,8 @@ add_action('get_header', remove_action('wp_head', '_admin_bar_bump_cb'));
 		return $social_sites;
 	}
 
-	/* add settings to create various social media text areas. */
-	add_action('customize_register', 'my_add_social_sites_customizer');
-	 
-	function my_add_social_sites_customizer($wp_customize) {
-	 
+	// Add settings to create various social media text areas.
+	add_action('customize_register', function($wp_customize) {
 		$wp_customize->add_section( 'my_social_settings', array(
 			'title'    => __('Social Media Links', 'text-domain'),
 			'priority' => 35,
@@ -200,8 +191,8 @@ add_action('get_header', remove_action('wp_head', '_admin_bar_bump_cb'));
 				'type'     => 'text'
 			));
 		}
-	}
-
+	});
+	 
 	// Takes user input from the customizer and outputs linked social media icons
 	// Used by banner.php
 	function my_social_media_icons() {

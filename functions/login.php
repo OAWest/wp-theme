@@ -3,11 +3,11 @@
  * Login Scripts
  */
 
-	// Show less info to users on failed login for security.
-	// Will not let a valid username be known.
-	add_filter( 'login_errors', function() {
-		return "<strong>ERROR</strong>: Incorrect Username or Password";
-	});
+// Show less info to users on failed login for security.
+// Will not let a valid username be known.
+add_filter( 'login_errors', function() {
+	return "<strong>ERROR</strong>: Incorrect Username or Password";
+});
 
 // Start Add Custom Widget
 	function custom_dashboard_help() {
@@ -52,59 +52,57 @@
 			"<div style=\"width:100%; text-align:center;\"><img src=\"".get_template_directory_uri()."/images/logos/logo.jpg\" style=\"max-width:100%; width:150px;\"></div>".
 			"<p>$message</p>";
 	}
-	function my_custom_dashboard_widgets() {
+	
+	add_action('wp_dashboard_setup', function() {
 		global $wp_meta_boxes;
 		wp_add_dashboard_widget('custom_help_widget', 'Western Region WordPress Theme', 'custom_dashboard_help');
-	}
-	add_action('wp_dashboard_setup', 'my_custom_dashboard_widgets');
+	});
 // End Add Custom Widget
 
 
-// Start Changing the login theme
-	function my_login_logo() {
-			
-			/* Custom Login background */
-			if (!empty(get_theme_mod('login_background'))) {
-				$background_url = esc_url(get_theme_mod('login_background'));
-			}
-			else {
-				$background_url = get_template_directory_uri(). '/images/banners/mountains.jpg';
-			}
-		?>
-		<style type="text/css">
-			body.login {
-				background-image: url("<?php echo $background_url; ?>");
-				background-size: cover;
-				background-repeat: no-repeat;
-				background-attachment: fixed;
-			}
-			
-			#login h1 a, .login h1 a {
-				background-image: url(<?php echo site_icon_url();?>);
-			}
-			
-			body.login #backtoblog, body.login #nav {
-				background-color: white;
-				padding-top: 10px;
-				padding-bottom: 10px;
-				box-shadow: 0 1px 3px rgba(0,0,0,.13);
-			}
-		</style>
-	<?php }
-	add_action( 'login_enqueue_scripts', 'my_login_logo' );
-// End Changing the login theme
+// Change the login theme
+add_action( 'login_enqueue_scripts', function() {
+		
+	/* Custom Login background */
+	if (!empty(get_theme_mod('login_background'))) {
+		$background_url = esc_url(get_theme_mod('login_background'));
+	}
+	else {
+		$background_url = get_template_directory_uri(). '/images/banners/mountains.jpg';
+	}
+	?>
+	<style type="text/css">
+		body.login {
+			background-image: url("<?php echo $background_url; ?>");
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+		}
+		
+		#login h1 a, .login h1 a {
+			background-image: url(<?php echo site_icon_url();?>);
+		}
+		
+		body.login #backtoblog, body.login #nav {
+			background-color: white;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			box-shadow: 0 1px 3px rgba(0,0,0,.13);
+		}
+	</style>
+	<?php
+});
 
+// Replace WordPress URL with Website URL
+add_filter( 'login_headerurl', 'home_url');
 
-	// Start Replace WordPress URL with Website URL
-	add_filter( 'login_headerurl', home_url() );
+// Replace WordPress title with Website title
+add_filter( 'login_headertitle', get_bloginfo('description') );
 
-	// Replace WordPress title with Website title
-	add_filter( 'login_headertitle', get_bloginfo('description') );
-
-	// Disable Sign-up page
-	add_action( 'signup_header', function() {
-		wp_redirect(site_url());
-		die();
-	});
+// Disable Sign-up page
+add_action( 'signup_header', function() {
+	wp_redirect(site_url());
+	die();
+});
 
 ?>
