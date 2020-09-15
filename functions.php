@@ -1,6 +1,5 @@
 <?php
-
-	require_once get_template_directory() . '/functions/cleanup.php';
+	require_once get_template_directory() . '/functions/admin.php';
 	require_once get_template_directory() . '/functions/customizer.php';
 	require_once get_template_directory() . '/functions/login.php';
 	require_once get_template_directory() . '/functions/pagination.php';
@@ -34,9 +33,28 @@
 		require_once('footer.php');
 	});
 
-	// Add bootstrap 4 img-fluid class
+	// Add bootstrap img-fluid class
 	add_filter('get_image_tag_class', function($class){
 		return $class.' img-fluid img-thumbnail';
+	});
+
+	// Less stuff in <head>
+	add_action('init', function() {
+		remove_action('wp_head', 'wp_generator');
+		remove_action('wp_head', 'rsd_link');
+		remove_action('wp_head', 'wlwmanifest_link');
+		remove_action('wp_head', 'index_rel_link');
+		remove_action('wp_head', 'feed_links', 2);
+		remove_action('wp_head', 'feed_links_extra', 3);
+		remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+		remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+		remove_action('wp_head', 'print_emoji_detection_script', 7);
+		remove_action('wp_print_styles', 'print_emoji_styles');
+		});
+
+	// Remove WordPress Version
+	add_filter('the_generator', function(){
+		return '';
 	});
 
 	// Add JavaScript and CSS

@@ -19,7 +19,7 @@ function govpress_customize_register( $wp_customize ) {
 
 	// Add a nav logo image control option
 	$wp_customize->add_setting( 'nav_logo', array(
-		'default' => get_template_directory_uri() . '/images/logos/western-region.png',
+		'default' => get_template_directory_uri() . '/assets/images/logos/western-region.png',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'nav_logo', array(
 	
@@ -30,7 +30,7 @@ function govpress_customize_register( $wp_customize ) {
 
 	// Add a header background image control option
 	$wp_customize->add_setting( 'header_background', array(
-		'default' => get_template_directory_uri() . '/images/banners/mountains.jpg',
+		'default' => get_template_directory_uri() . '/assets/images/banners/mountains.jpg',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'header_background', array(
 	
@@ -41,7 +41,7 @@ function govpress_customize_register( $wp_customize ) {
 
 	// Add a header logo image control option
 	$wp_customize->add_setting( 'header_logo', array(
-		'default' => get_template_directory_uri() . '/images/logos/western-region-white.png',
+		'default' => get_template_directory_uri() . '/assets/images/logos/western-region-white.png',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'header_logo', array(
     	'label'    => __( 'Banner inner image', 'govpress' ),
@@ -51,12 +51,12 @@ function govpress_customize_register( $wp_customize ) {
 
 	// Add a default favicon logo image control option
 	$wp_customize->add_setting( 'site_icon', array(
-		'default' => get_template_directory_uri() . '/images/logos/favicon.png',
+		'default' => get_template_directory_uri() . '/assets/images/logos/favicon.png',
 	) );
 
 	// Add a login background image control option
 	$wp_customize->add_setting( 'login_background', array(
-		'default' => get_template_directory_uri() . '/images/banners/mountains.jpg',
+		'default' => get_template_directory_uri() . '/assets/images/banners/mountains.jpg',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'login_background', array(
     	'label'    => __( 'Login page background image', 'govpress' ),
@@ -169,13 +169,6 @@ add_action( 'wp_enqueue_scripts', function() {
   wp_add_inline_style( 'style', $custom_css ); //Pass the variable into the main style sheet ID
 });
 
-// Remove top margin created by admin bar
-add_action('get_header', function(){
-	if(is_admin_bar_showing()) {
-		remove_action('wp_head', '_admin_bar_bump_cb');
-	}
-});
-
 // Start Social Media Links
 	function my_customizer_social_media_array() {
 		/* store social site names in array */
@@ -259,6 +252,6 @@ add_action('get_header', function(){
 			echo "\t\t\t</ul>\n";
 		}
 	}
-// End Socail Media Links
+// End Social Media Links
 
 ?>
