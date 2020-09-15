@@ -108,27 +108,72 @@ add_action( 'wp_enqueue_scripts', function() {
 	
         //All the user input CSS settings as set in the plugin settings
 		$options = get_option( 'govpress', false );
-		$custom_css ="";
-		if (!empty(get_theme_mod('header_background' ))) { $custom_css .= "header.banner.mountains::after {background-image: url(\"".esc_url(get_theme_mod('header_background'))."\"); }\n\t";}
-		if (!empty(get_theme_mod('nav_logo' ))) { $custom_css .= ".navbar-light .container .navbar-header .navbar-brand {background-image: url(\"".esc_url(get_theme_mod('nav_logo'))."\"); }\n\t";}
-		if (!empty(get_theme_mod('header_logo'))) { $custom_css .= ".logo-western-region-white {background-image: url(\"".esc_url(get_theme_mod('header_logo'))."\"); }\n\t";}
-		if (!empty($options['primary_color'] ) ) { $custom_css .= "body { color: ".$options['primary_color']."; }\n\t";}
-		if (!empty(get_theme_mod('background_color'))){ $custom_css .= "  body { background-color: #".get_theme_mod('background_color')."; }\n\t"; }
-		if (!empty($options['primary_link_color']) ) { $custom_css .= "  a { color: ".$options['primary_link_color']." }\n\t";
-													   $custom_css .= "  .btn-default { color: ".$options['primary_link_color']."; border-color: ".$options['primary_link_color']." }\n\t";
-													   $custom_css .= "  .page-item.active .page-link { background-color: ".$options['primary_link_color']."; border-color: ".$options['primary_link_color']." }\n\t";
-													   $custom_css .= "  .page-link { color: ".$options['primary_link_color']."; }\n\t";
-													   $custom_css .= "  .page-link:hover { color: #fff; background-color: ".$options['primary_link_color']."; }\n\t";}
-		if (!empty($options['primary_link_hover']) ) { $custom_css .= "  a:hover { color: ".$options['primary_link_hover']."; }\n";
-													   $custom_css .= "  .btn.btn-default:hover { color: ".$options['primary_link_hover']."; border-color: ".$options['primary_link_hover']."; background-color:transparent; }\n\t"; 
-													   $custom_css .= "  #header .social a:hover, #footer .social a:hover { color: ".$options['primary_link_hover']."; }\n\t"; }
+		$custom_css = '';
+		$custom_css .= !empty(get_theme_mod('header_background'))
+			? ' header.banner.mountains::after {
+					background-image: url("'.esc_url(get_theme_mod('header_background')).'");
+				}'
+			: '';
+		$custom_css .= !empty(get_theme_mod('nav_logo'))
+			? ' .navbar-light .container .navbar-header .navbar-brand {
+					background-image: url("'.esc_url(get_theme_mod('nav_logo')).'");
+				}'
+			: '';
+		$custom_css .= !empty(get_theme_mod('header_logo'))
+			? ' .logo-western-region-white {
+					background-image: url("'.esc_url(get_theme_mod('header_logo')).'");
+				}'
+			: '';
+		$custom_css .= !empty($options['primary_color'])
+			? ' body {
+					color: '.$options['primary_color'].';
+				}'
+			: '';
+		$custom_css .= !empty(get_theme_mod('background_color'))
+			? ' body {
+					background-color: #'.get_theme_mod('background_color').';
+				}'
+			: '';
+		$custom_css .= !empty($options['primary_link_color'])
+			? " a {
+					color: ".$options['primary_link_color'].";
+				}
+				.btn-default {
+					color: ".$options['primary_link_color'].";
+					border-color: ".$options['primary_link_color'].";
+				}
+				.page-item.active .page-link {
+					background-color: ".$options['primary_link_color'].";
+					border-color: ".$options['primary_link_color'].";
+				}
+				.page-link {
+					color: ".$options['primary_link_color'].";
+				}
+				.page-link:hover {
+					color: #fff;
+					background-color: ".$options['primary_link_color'].";
+				}"
+			: '';
+		$custom_css .= !empty($options['primary_link_hover'])
+			? " a:hover {
+					color: ".$options['primary_link_hover'].";
+				}
+				.btn.btn-default:hover {
+					color: ".$options['primary_link_hover'].";
+					border-color: ".$options['primary_link_hover'].";
+					background-color: transparent;
+				}
+				#header .social a:hover,
+				#footer .social a:hover {
+					color: ".$options['primary_link_hover'].";
+				}"
+			: '';
   // Add the above custom CSS via wp_add_inline_style
   wp_add_inline_style( 'style', $custom_css ); //Pass the variable into the main style sheet ID
 });
 
 // Remove top margin created by admin bar
 remove_action('wp_head', '_admin_bar_bump_cb');
-
 
 // Start Social Media Links
 	function my_customizer_social_media_array() {
