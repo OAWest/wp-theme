@@ -52,6 +52,7 @@
 		// Enqueue Styles
 		wp_enqueue_style('bootstrap', get_template_directory_uri().'/assets/css/bootstrap.min.css', null, '4.5.2', 'all');
 		wp_enqueue_style('fontawesome', get_template_directory_uri().'/assets/css//fontawesome.min.css', null, '5.14.0', 'all');
+		wp_enqueue_style( 'style', get_template_directory_uri() . '/style.css' );
 	});
 
 ?>

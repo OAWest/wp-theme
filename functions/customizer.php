@@ -17,13 +17,35 @@ function govpress_customize_register( $wp_customize ) {
     	'description' => 'Upload a images for the website identity',
 	) );
 
+	// Add a nav logo image control option
+	$wp_customize->add_setting( 'nav_logo', array(
+		'default' => get_template_directory_uri() . '/images/logos/western-region.png',
+	) );
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'nav_logo', array(
+	
+    	'label'    => __( 'Navigation bar logo', 'govpress' ),
+		'section'  => 'site_images',
+		'settings' => 'nav_logo',
+	) ) );
+
+	// Add a header background image control option
+	$wp_customize->add_setting( 'header_background', array(
+		'default' => get_template_directory_uri() . '/images/banners/mountains.jpg',
+	) );
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'header_background', array(
+	
+    	'label'    => __( 'Banner background image', 'govpress' ),
+		'section'  => 'site_images',
+		'settings' => 'header_background',
+	) ) );
+
 	// Add a header logo image control option
 	$wp_customize->add_setting( 'header_logo', array(
 		'default' => get_template_directory_uri() . '/images/logos/western-region-white.png',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'header_logo', array(
 	
-    	'label'    => __( 'Header logo image', 'govpress' ),
+    	'label'    => __( 'Banner inner image', 'govpress' ),
 		'section'  => 'site_images',
 		'settings' => 'header_logo',
 	) ) );
@@ -32,28 +54,6 @@ function govpress_customize_register( $wp_customize ) {
 	$wp_customize->add_setting( 'site_icon', array(
 		'default' => get_template_directory_uri() . '/images/logos/favicon.png',
 	) );
-	
-	// Add a nav logo image control option
-	$wp_customize->add_setting( 'nav_logo', array(
-		'default' => get_template_directory_uri() . '/images/logos/western-region.png',
-	) );
-	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'nav_logo', array(
-	
-    	'label'    => __( 'Nav menu image', 'govpress' ),
-		'section'  => 'site_images',
-		'settings' => 'nav_logo',
-	) ) );
-	
-	// Add a header background image control option
-	$wp_customize->add_setting( 'header_background', array(
-		'default' => get_template_directory_uri() . '/images/banners/mountains.jpg',
-	) );
-	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'header_background', array(
-	
-    	'label'    => __( 'Header background image', 'govpress' ),
-		'section'  => 'site_images',
-		'settings' => 'header_background',
-	) ) );
 	
 	// Add a login background image control option
 	$wp_customize->add_setting( 'login_background', array(
@@ -104,7 +104,6 @@ add_action( 'customize_register', 'govpress_customize_register' );
 
 // Add inline CSS styles to an existing CSS stylesheet
 add_action( 'wp_enqueue_scripts', function() {
-	wp_enqueue_style( 'style', get_template_directory_uri() . '/style.css' );
 	
         //All the user input CSS settings as set in the plugin settings
 		$options = get_option( 'govpress', false );
