@@ -20,7 +20,9 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div id="navbar" class="navbar-collapse slide-collapse">
-		<?php clean_custom_menu("nav_menu"); ?>
+    <ul id="menu-header" class="navbar-nav ml-auto">
+		  <?php clean_custom_menu("nav_menu"); ?>
+    </ul>
 	</div>
 	<script>
 		// mobile menu slide from the left

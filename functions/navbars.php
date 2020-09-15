@@ -14,79 +14,91 @@ add_action('after_setup_theme', function(){
 });
 
 function get_header_menu($menu_items){
-	$menu_list = '<ul id="menu-header" class="navbar-nav ml-auto">';
+	$menu_list = '';
 	$submenu = false;
 	
 	foreach($menu_items as $key => $menu_item) {
+		$is_root = $menu_item->menu_item_parent == 0;
+		$has_child = isset($menu_items[$key+1]) && $menu_item->ID == $menu_items[$key+1]->menu_item_parent;
 
-		// Clear out dropdown menu if menu_item is root
-		if( $submenu && $menu_item->menu_item_parent == 0 ){
-			$submenu = false;
-			$menu_list .= '</ul></li>';
+		// If the menu_item is root
+		if( $is_root ){
+
+			// If the last item was a dropdown, clear out dropdown menu
+			if( $submenu ){
+				$submenu = false;
+				$menu_list .= '</ul></li>';
+			}
+
+			// If the menu_item has a child
+			if( $has_child ) {
+				$submenu = true;
+				$menu_list .= '
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							'.$menu_item->title.'
+						</a>
+						<ul class="dropdown-menu">'."\n";
+			}
+
+			// If the menu_item does not have a child
+			else {
+				$menu_list .= '<li><a href="'.$menu_item->url.'" title="'.$menu_item->title.'">'.$menu_item->title.'</a></li>';		
+			}
+
 		}
 
-		// If the menu_item is root and has a child
-		if( !$submenu 
-			&& $menu_item->menu_item_parent == 0
-			&& isset($menu_items[$key+1])
-			&& $menu_item->ID == $menu_items[$key+1]->menu_item_parent ) {
-
-			$submenu = true;
-			$menu_list .= '
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						'.$menu_item->title.'
-					</a>
-					<ul class="dropdown-menu">'."\n";
+		// Otherwise the menu_item is a child
+		else {
+			$menu_list .= '<li><a href="'.$menu_item->url.'" title="'.$menu_item->title.'">'.$menu_item->title.'</a></li>';
 		}
-		$menu_list .= '<li><a href="'.$menu_item->url.'" title="'.$menu_item->title.'">'.$menu_item->title.'</a></li>';
 	}
-	$menu_list .= "</ul>";
 	return $menu_list;
 }
 
 
 function get_footer_menu($menu_items){
-	$submenu = false;
 	$menu_list = '';
-	$parent_id = '';
+	$submenu = false;
 
 	foreach($menu_items as $key => $menu_item) {
 		 
 		$link = $menu_item->url;
 		$title = $menu_item->title;
-		
-		// If the menu_item is not part of a sub-menu, it is a parent
-		if (!isset($menu_item->menu_item_parent) || !$menu_item->menu_item_parent) {
-			$parent_id = $menu_item->ID;
-			$menu_list .= '<div class="col-xs-12 col-sm-4 col-md-3 col-lg-2 grid-item">'."\n";
-			$menu_list .= "\t".'<h4><a href="'.$link.'" class="title">'.$title.'</a></h4>' ."\n";
+		$is_root = $menu_item->menu_item_parent == 0;
+		$has_child = isset($menu_items[$key+1]) && $menu_item->ID == $menu_items[$key+1]->menu_item_parent;
+
+		// If the menu_item is root
+		if( $is_root ) {
+
+			// If the last item was a dropdown, clear out dropdown menu
+			if( $submenu ){
+				$submenu = false;
+				$menu_list .= '</ul></nav></div>';
+			}
+
+			$menu_list .= '
+				<div class="col-xs-12 col-sm-4 col-md-3 col-lg-2 grid-item">
+					<h4><a href="'.$link.'" class="title">'.$title.'</a></h4>' ."\n";
+			
+			// If the menu_item has a child
+			if($has_child){
+				$submenu = true;
+				$menu_list .= '
+					<nav>
+						<ul class="list-unstyled">' ."\n";
+			}
+
+			// If the menu_item does not have a child
+			else {
+				$menu_list .= '
+				</div>' ."\n";
+			}
 		}
 
-		// If the menu_item is part of a sub-menu
-		else if ( $parent_id == $menu_item->menu_item_parent ) {
-			// Check if it is the first submenu item
-			if ( !$submenu ) {
-				$submenu = true;
-				$menu_list .= "\t".'<nav>'."\n\t\t".'<ul class="list-unstyled">' ."\n";
-			}
-			$menu_list .= "\t\t\t".'<li class="item"><a href="'.$link.'" class="title">'.$title.'</a></li>' ."\n";
-			// Check if it is the last submenu item
-			if ( $menu_items[$key]->menu_item_parent != $parent_id && $submenu ){
-				$menu_list .= "\t\t".'</ul>'."\n\t".'</nav>'."\n";
-				$submenu = false;
-			}
-		}
-		
-		// If the menu_item is part of a sub-sub-menu
+		// Otherwise the menu_item is a child
 		else {
-			$menu_list .= '<div style="display:none;">';
-		}
-		
-		// This is the last menu_item of the current series
-		if ( isset($menu_items[$key]->menu_item_parent) && $menu_items[$key]->menu_item_parent != $parent_id ) { 
-			$menu_list .= '</div>' ."\n";      
-			$submenu = false;
+			$menu_list .= "\t\t\t".'<li class="item"><a href="'.$link.'" class="title">'.$title.'</a></li>' ."\n";
 		}
 	}
 	return $menu_list;

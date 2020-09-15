@@ -173,7 +173,11 @@ add_action( 'wp_enqueue_scripts', function() {
 });
 
 // Remove top margin created by admin bar
-remove_action('wp_head', '_admin_bar_bump_cb');
+add_action('get_header', function(){
+	if(is_admin_bar_showing()) {
+		remove_action('wp_head', '_admin_bar_bump_cb');
+	}
+});
 
 // Start Social Media Links
 	function my_customizer_social_media_array() {
