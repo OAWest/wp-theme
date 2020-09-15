@@ -3,13 +3,13 @@
  * Customizer
  */
 
- 
+
 //Start Add additional customizer color options
 function govpress_customize_register( $wp_customize ) {
 	// Remove the unused default customizer options
 	$wp_customize->remove_control("header_textcolor");
 	$wp_customize->remove_section("background_image");
-	
+
 	// Add an images section
 	$wp_customize->add_section( 'site_images' , array(
     	'title'       => __( 'Images', 'govpress' ),
@@ -44,28 +44,26 @@ function govpress_customize_register( $wp_customize ) {
 		'default' => get_template_directory_uri() . '/images/logos/western-region-white.png',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'header_logo', array(
-	
     	'label'    => __( 'Banner inner image', 'govpress' ),
 		'section'  => 'site_images',
 		'settings' => 'header_logo',
 	) ) );
-	
+
 	// Add a default favicon logo image control option
 	$wp_customize->add_setting( 'site_icon', array(
 		'default' => get_template_directory_uri() . '/images/logos/favicon.png',
 	) );
-	
+
 	// Add a login background image control option
 	$wp_customize->add_setting( 'login_background', array(
 		'default' => get_template_directory_uri() . '/images/banners/mountains.jpg',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'login_background', array(
-	
     	'label'    => __( 'Login page background image', 'govpress' ),
 		'section'  => 'site_images',
 		'settings' => 'login_background',
 	) ) );
-	
+
 	// Add a primary color editor control option
 	$wp_customize->add_setting( 'govpress[primary_color]', array(
 		'default' => '',
@@ -76,7 +74,7 @@ function govpress_customize_register( $wp_customize ) {
 		'section' => 'colors',
 		'settings' => 'govpress[primary_color]'
 	) ) );
-	
+
 	// Add a primary link color editor control option
 	$wp_customize->add_setting( 'govpress[primary_link_color]', array(
 		'default' => '',
@@ -87,7 +85,7 @@ function govpress_customize_register( $wp_customize ) {
 		'section' => 'colors',
 		'settings' => 'govpress[primary_link_color]'
 	) ) );
-	
+
 	// Add a primary color hover editor control option
 	$wp_customize->add_setting( 'govpress[primary_link_hover]', array(
 		'default' => '',
