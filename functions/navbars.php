@@ -27,7 +27,9 @@ function get_header_menu($menu_items){
 			// If the last item was a dropdown, clear out dropdown menu
 			if( $submenu ){
 				$submenu = false;
-				$menu_list .= '</ul></li>';
+				$menu_list .= '
+						</ul>
+					</li>';
 			}
 
 			// If the menu_item has a child
@@ -38,19 +40,22 @@ function get_header_menu($menu_items){
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							'.$menu_item->title.'
 						</a>
-						<ul class="dropdown-menu">'."\n";
+						<ul class="dropdown-menu">
+							<li><a href="'.$menu_item->url.'" title="'.$menu_item->title.'">'.$menu_item->title.'</a></li>';
 			}
 
 			// If the menu_item does not have a child
 			else {
-				$menu_list .= '<li><a href="'.$menu_item->url.'" title="'.$menu_item->title.'">'.$menu_item->title.'</a></li>';		
+				$menu_list .= '
+					<li><a href="'.$menu_item->url.'" title="'.$menu_item->title.'">'.$menu_item->title.'</a></li>';
 			}
 
 		}
 
 		// Otherwise the menu_item is a child
 		else {
-			$menu_list .= '<li><a href="'.$menu_item->url.'" title="'.$menu_item->title.'">'.$menu_item->title.'</a></li>';
+			$menu_list .= '
+							<li><a href="'.$menu_item->url.'" title="'.$menu_item->title.'">'.$menu_item->title.'</a></li>';
 		}
 	}
 	return $menu_list;
