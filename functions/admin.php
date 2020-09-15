@@ -1,6 +1,6 @@
 <?php
 /**!
- * Login Scripts
+ * Admin Scripts
  */
 
 // Remove top margin created by admin bar
