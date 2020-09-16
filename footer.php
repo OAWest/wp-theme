@@ -11,7 +11,7 @@
     <footer id="footer">
       <div class="container">
         <div class="row">
-            <?php clean_custom_menu("footer_menu"); ?>
+<?php clean_custom_menu("footer_menu"); ?>
         </div>
         <div class="row">
           <div class="col-12 social">

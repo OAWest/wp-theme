@@ -21,7 +21,7 @@
 	</button>
 	<div id="navbar" class="navbar-collapse slide-collapse">
     <ul id="menu-header" class="navbar-nav ml-auto">
-      <?php clean_custom_menu("nav_menu"); ?>
+<?php clean_custom_menu("nav_menu"); ?>
     </ul>
 	</div>
 	<script>

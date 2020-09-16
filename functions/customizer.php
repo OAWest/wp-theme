@@ -233,7 +233,7 @@ add_action( 'wp_enqueue_scripts', function() {
 	});
 	 
 	// Takes user input from the customizer and outputs linked social media icons
-	// Used by banner.php
+	// Used by banner.php and footer.php
 	function my_social_media_icons() {
 		$social_sites = my_customizer_social_media_array();
 	 
