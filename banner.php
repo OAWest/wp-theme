@@ -3,12 +3,12 @@
     <header>
       <h2><div class="logo-western-region-white"></div></h2>
     </header>
-    <p>Welcome to <?php echo get_bloginfo( 'name' ); ?>, Order of the Arrow</p>
+    <p>Welcome to <?php bloginfo( 'name' ); ?>, Order of the Arrow</p>
     <footer id="header">
       <div class="row">
-		<div class="col-12 social">
-			<?php echo my_social_media_icons(); ?>
-		</div>
+        <div class="col-12 social">
+          <?php my_social_media_icons(); ?>
+        </div>
       </div>
     </footer>
   </div>

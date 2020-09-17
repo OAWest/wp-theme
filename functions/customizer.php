@@ -245,11 +245,11 @@ add_action( 'wp_enqueue_scripts', function() {
 		}
 		/* for each active social site, add it as a list item */
 		if ( ! empty( $active_sites ) ) {
-			echo "<ul class='social-media-icons'>\n";
+			echo '<ul class="social-media-icons">'."\n";
 			foreach($active_sites as $social_site) {
-				echo "\t\t\t\t<a target=\"_blank\" href=\"$social_site[2]\" title=\"$social_site[0]\"><i class=\"$social_site[1]\"></i></a>\n";
+				echo "\t\t\t<a target=\"_blank\" href=\"$social_site[2]\" title=\"$social_site[0]\"><i class=\"$social_site[1]\"></i></a>\n";
 			}
-			echo "\t\t\t</ul>\n";
+			echo "\t\t</ul>\n";
 		}
 	}
 // End Social Media Links

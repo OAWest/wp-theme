@@ -28,11 +28,6 @@
 		return '<a class="btn btn-block btn-default" more-link href="' . get_permalink() . '">Read More</a>';
 	});
 
-	// Add scripts to wp_footer()
-	add_action( 'wp_footer', function() {
-		require_once('footer.php');
-	});
-
 	// Add bootstrap img-fluid class
 	add_filter('get_image_tag_class', function($class){
 		return $class.' img-fluid img-thumbnail';
