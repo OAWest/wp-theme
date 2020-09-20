@@ -28,9 +28,9 @@ function clean_custom_menu( $theme_location ) {
 					'root_with_child' => "\t\t".'<li class="dropdown">'.
 						"\n\t\t\t".'<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">%title</a>'.
 						"\n\t\t\t".'<ul class="dropdown-menu">'.
-						"\n\t\t\t\t".'<li><a href="%url" title="%title">%url</a></li>'."\n",
+						"\n\t\t\t\t".'<li><a href="%url" title="%title">%title</a></li>'."\n",
 					'root_no_child' => "\t\t".'<li><a href="%url" title="%title">%title</a></li>'."\n",
-					'is_child' => "\t\t\t\t".'<li><a href="%url" title="%title">%url</a></li>'."\n",
+					'is_child' => "\t\t\t\t".'<li><a href="%url" title="%title">%title</a></li>'."\n",
 				),
 				'footer_menu' => array(
 					'clear_submenu' => "\t\t\t\t\t</ul>\n\t\t\t\t</nav>\n\t\t\t</div>\n",

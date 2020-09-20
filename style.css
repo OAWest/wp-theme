@@ -5,10 +5,13 @@ Author: Western Region, Order of the Arrow
 Author URI: http://western.oa-bsa.org/
 Description: Designed for use by the Western Region, Order of the Arrow, and its sections.
 Version: 2019.01.27
+Requires at least: 5.0
+Tested up to: 5.5.1
+Requires PHP: 7.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: WR
-Tags: one-column, two-columns, flexible-header, accessibility-ready, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments
+Tags: one-column, two-columns, flexible-header, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images,  post-formats, rtl-language-support, sticky-post, theme-options
 */
 
 

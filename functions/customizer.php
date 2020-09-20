@@ -3,16 +3,16 @@
  * Customizer
  */
 
+// Register additional customizer options
+add_action( 'customize_register', function($wp_customize){
 
-//Start Add additional customizer color options
-function govpress_customize_register( $wp_customize ) {
 	// Remove the unused default customizer options
 	$wp_customize->remove_control("header_textcolor");
 	$wp_customize->remove_section("background_image");
 
 	// Add an images section
 	$wp_customize->add_section( 'site_images' , array(
-    	'title'       => __( 'Images', 'govpress' ),
+    	'title'       => __( 'Images', 'WR_theme' ),
     	'priority'    => 31,
     	'description' => 'Upload a images for the website identity',
 	) );
@@ -20,10 +20,10 @@ function govpress_customize_register( $wp_customize ) {
 	// Add a nav logo image control option
 	$wp_customize->add_setting( 'nav_logo', array(
 		'default' => get_template_directory_uri() . '/assets/images/logos/western-region.png',
+		'sanitize_callback' => 'esc_url_raw'
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'nav_logo', array(
-	
-    	'label'    => __( 'Navigation bar logo', 'govpress' ),
+    	'label'    => __( 'Navigation bar logo', 'WR_theme' ),
 		'section'  => 'site_images',
 		'settings' => 'nav_logo',
 	) ) );
@@ -31,10 +31,10 @@ function govpress_customize_register( $wp_customize ) {
 	// Add a header background image control option
 	$wp_customize->add_setting( 'header_background', array(
 		'default' => get_template_directory_uri() . '/assets/images/banners/mountains.jpg',
+		'sanitize_callback' => 'esc_url_raw'
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'header_background', array(
-	
-    	'label'    => __( 'Banner background image', 'govpress' ),
+    	'label'    => __( 'Banner background image', 'WR_theme' ),
 		'section'  => 'site_images',
 		'settings' => 'header_background',
 	) ) );
@@ -42,9 +42,10 @@ function govpress_customize_register( $wp_customize ) {
 	// Add a header logo image control option
 	$wp_customize->add_setting( 'header_logo', array(
 		'default' => get_template_directory_uri() . '/assets/images/logos/western-region-white.png',
+		'sanitize_callback' => 'esc_url_raw'
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'header_logo', array(
-    	'label'    => __( 'Banner inner image', 'govpress' ),
+    	'label'    => __( 'Banner inner image', 'WR_theme' ),
 		'section'  => 'site_images',
 		'settings' => 'header_logo',
 	) ) );
@@ -52,59 +53,76 @@ function govpress_customize_register( $wp_customize ) {
 	// Add a default favicon logo image control option
 	$wp_customize->add_setting( 'site_icon', array(
 		'default' => get_template_directory_uri() . '/assets/images/logos/favicon.png',
+		'sanitize_callback' => 'esc_url_raw'
 	) );
 
 	// Add a login background image control option
 	$wp_customize->add_setting( 'login_background', array(
 		'default' => get_template_directory_uri() . '/assets/images/banners/mountains.jpg',
+		'sanitize_callback' => 'esc_url_raw'
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'login_background', array(
-    	'label'    => __( 'Login page background image', 'govpress' ),
+    	'label'    => __( 'Login page background image', 'WR_theme' ),
 		'section'  => 'site_images',
 		'settings' => 'login_background',
 	) ) );
 
 	// Add a primary color editor control option
-	$wp_customize->add_setting( 'govpress[primary_color]', array(
+	$wp_customize->add_setting( 'WR_theme[primary_color]', array(
 		'default' => '',
-		'type' => 'option'
+		'type' => 'option',
+		'sanitize_callback' => 'sanitize_hex_color'
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'primary_color', array(
-		'label' => __( 'Primary Text Color', 'govpress' ),
+		'label' => __( 'Primary Text Color', 'WR_theme' ),
 		'section' => 'colors',
-		'settings' => 'govpress[primary_color]'
+		'settings' => 'WR_theme[primary_color]'
 	) ) );
 
 	// Add a primary link color editor control option
-	$wp_customize->add_setting( 'govpress[primary_link_color]', array(
+	$wp_customize->add_setting( 'WR_theme[primary_link_color]', array(
 		'default' => '',
-		'type' => 'option'
+		'type' => 'option',
+		'sanitize_callback' => 'sanitize_hex_color'
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'primary_link_color', array(
-		'label' => __( 'Primary Link Color', 'govpress' ),
+		'label' => __( 'Primary Link Color', 'WR_theme' ),
 		'section' => 'colors',
-		'settings' => 'govpress[primary_link_color]'
+		'settings' => 'WR_theme[primary_link_color]'
 	) ) );
 
 	// Add a primary color hover editor control option
-	$wp_customize->add_setting( 'govpress[primary_link_hover]', array(
+	$wp_customize->add_setting( 'WR_theme[primary_link_hover]', array(
 		'default' => '',
-		'type' => 'option'
+		'type' => 'option',
+		'sanitize_callback' => 'sanitize_hex_color'
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'primary_link_hover', array(
-		'label' => __( 'Primary Link Hover', 'govpress' ),
+		'label' => __( 'Primary Link Hover', 'WR_theme' ),
 		'section' => 'colors',
-		'settings' => 'govpress[primary_link_hover]'
+		'settings' => 'WR_theme[primary_link_hover]'
 	) ) );
-}
-add_action( 'customize_register', 'govpress_customize_register' );
+});
 
-
-// Add inline CSS styles to an existing CSS stylesheet
+// Add JavaScript and CSS files
 add_action( 'wp_enqueue_scripts', function() {
+
+		// Enqueue Scripts
+		wp_deregister_script('jquery');
+		wp_enqueue_script('jquery', get_template_directory_uri().'/assets/js/jquery.min.js', null, '3.5.1', false);
+		wp_enqueue_script('bootstrap', get_template_directory_uri().'/assets/js/bootstrap.min.js', null, '4.5.2', true);
+		wp_enqueue_script('isotope', get_template_directory_uri().'/assets/js/isotope.pkgd.min.js', null, '3.0.6', true);
+		wp_enqueue_script('fit-columns', get_template_directory_uri().'/assets/js/fit-columns.js', null, '1.1.4', true);
+		wp_enqueue_script('imagesloaded', get_template_directory_uri().'/assets/js/imagesloaded.pkgd.min.js', null, '4.1.4', true);
+
+		// Enqueue Styles
+		wp_enqueue_style('bootstrap', get_template_directory_uri().'/assets/css/bootstrap.min.css', null, '4.5.2', 'all');
+		wp_enqueue_style('fontawesome', get_template_directory_uri().'/assets/css//fontawesome.min.css', null, '5.14.0', 'all');
+		wp_enqueue_style( 'style', get_template_directory_uri() . '/style.css' );
 	
+		// Add inline CSS styles to an existing CSS stylesheet
         //All the user input CSS settings as set in the plugin settings
-		$options = get_option( 'govpress', false );
+		$options = get_option( 'WR_theme', false );
 		$custom_css = '';
 		$custom_css .= !empty(get_theme_mod('header_background'))
 			? ' header.banner.mountains::after {
@@ -194,7 +212,7 @@ add_action( 'wp_enqueue_scripts', function() {
 	// Add settings to create various social media text areas.
 	add_action('customize_register', function($wp_customize) {
 		$wp_customize->add_section( 'my_social_settings', array(
-			'title'    => __('Social Media Links', 'text-domain'),
+			'title'    => __('Social Media Links', 'WR_theme'),
 			'priority' => 35,
 		) );
 	 
@@ -225,7 +243,7 @@ add_action( 'wp_enqueue_scripts', function() {
 			}
 	 
 			$wp_customize->add_control( $social_site, array(
-				'label'    => __( "$social_site url:", 'text-domain' ),
+				'label'    => __( "$social_site url:", 'WR_theme' ),
 				'section'  => 'my_social_settings',
 				'type'     => 'text'
 			));

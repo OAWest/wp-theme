@@ -50,7 +50,7 @@ add_filter( 'login_headertext', function(){
 
 // Disable Sign-up page
 add_action( 'signup_header', function() {
-	wp_redirect(site_url());
+	wp_redirect(home_url());
 	die();
 });
 

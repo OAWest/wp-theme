@@ -1,1 +1,1 @@
-<?php require_once('page.php'); ?>
+<?php get_template_part('page'); ?>

@@ -16,12 +16,12 @@
  */
 	get_header();
 	if(!is_paged()){
-		require_once('banner.php');
+		get_template_part('banner');
 	}
 ?>
 <main class="index">
 
-	<?php !is_paged() ? require_once('sidebar.php') : ''; ?>
+	<?php !is_paged() ? get_template_part('sidebar') : ''; ?>
 	<script>
 		$(document).ready(function() {
 			var $grid = $('#grid').isotope({

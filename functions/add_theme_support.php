@@ -3,27 +3,27 @@
 // Default Color Palette
 add_theme_support( 'editor-color-palette', array(
 	array(
-		'name'  => __( 'OA Blue', 'gutenbergtheme' ),
+		'name'  => __( 'OA Blue', 'WR_theme' ),
 		'slug'  => 'oa-blue',
 		'color' => '#005596',
 	),
 	array(
-		'name'  => __( 'OA Red', 'gutenbergtheme' ),
+		'name'  => __( 'OA Red', 'WR_theme' ),
 		'slug'  => 'oa-red',
 		'color' => '#E31837',
 	),
 	array(
-		'name'  => __( 'OA White', 'gutenbergtheme' ),
+		'name'  => __( 'OA White', 'WR_theme' ),
 		'slug'  => 'oa-white',
 		'color' => '#E6E7E8',
 	),
 	array(
-		'name'  => __( 'WR Gold', 'gutenbergtheme' ),
+		'name'  => __( 'WR Gold', 'WR_theme' ),
 		'slug'  => 'wr-gold',
 		'color' => '#DBB780',
 	),
 	array(
-		'name'  => __( 'WR Gray', 'gutenbergtheme' ),
+		'name'  => __( 'WR Gray', 'WR_theme' ),
 		'slug'  => 'wr-gray',
 		'color' => '#383838',
 	)
