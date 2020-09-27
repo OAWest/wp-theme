@@ -30,7 +30,7 @@ add_action('wp_dashboard_setup', function() {
 			$message = '<p>You are on the <a href="https://github.com/oawest/wp-theme/releases/latest" target="_blank" title="'.$latest_version.'">latest version</a></p>';
 		}
 		else if($installed_version >= $latest_version){
-			$message = '<p>You are on a development version. Checkout GitHub to downgrade to the <a href="https://github.com/oawest/wp-theme/releases/latest" target="_blank" title="'.$latest_version.'">latest version stable</a></p>';
+			$message = '<p>You are on a development version. Checkout GitHub to downgrade to the <a href="https://github.com/oawest/wp-theme/releases/latest" target="_blank" title="'.$latest_version.'">latest stable version</a></p>';
 		}
 		else{
 			$message = '<h2 style="background-color:rgb(128, 0, 0); color:white; padding:15px;">
