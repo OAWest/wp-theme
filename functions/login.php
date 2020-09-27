@@ -12,8 +12,8 @@ add_filter( 'login_errors', function() {
 // Custom Login theme
 add_action( 'login_enqueue_scripts', function() {
 	$background_url = !empty(get_theme_mod('login_background')) ? esc_url(get_theme_mod('login_background')) : get_template_directory_uri(). '/assets/images/banners/mountains.jpg';
-	$logo_url = site_icon_url() ?? get_template_directory_uri(). '/assets/images/logos/favicon.png';
-	
+	$logo_url = !empty(get_site_icon_url()) ? esc_url(get_site_icon_url()) : esc_url(get_template_directory_uri().'/assets/images/logos/favicon.png');
+
 	echo '
 	<style type="text/css">
 		body.login {
