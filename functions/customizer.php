@@ -3,6 +3,16 @@
  * Customizer
  */
 
+// Set the default site icon
+function set_default_site_icon(){
+    if(!has_site_icon()  && !is_customize_preview()){
+		echo '<link rel="shortcut icon" type="image/x-icon" href="/wp-content/themes/WR/assets/images/logos/favicon.png">';
+		echo '<link rel="apple-touch-icon" href="/wp-content/themes/WR/assets/images/logos/favicon.png">';
+    }
+}
+add_action('wp_head', 'set_default_site_icon');
+add_action('login_head', 'set_default_site_icon');
+
 // Register additional customizer options
 add_action( 'customize_register', function($wp_customize){
 
