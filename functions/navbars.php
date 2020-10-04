@@ -3,120 +3,85 @@
  * Navbars
  */
 
- 
-if ( function_exists( 'register_nav_menus' ) ) {
+// Register the menu locations
+add_action('after_setup_theme', function(){
 	register_nav_menus(
 		array(
 		  'nav_menu' => 'Nav Menu',
 		  'footer_menu' => 'Footer Menu'
 		)
 	);
-}
+});
 
+// Build the menus
 function clean_custom_menu( $theme_location ) {
 	if ( ($theme_location) && ($locations = get_nav_menu_locations()) && isset($locations[$theme_location]) ) {
-	
+		$menu = get_term($locations[$theme_location]);
+		$menu_items = wp_get_nav_menu_items($menu->term_id);
+		$menu_list = '';
 
-	// Start Head Navigation Walker
-		if($theme_location=='nav_menu'){
-	
-			$menu = get_term( $locations[$theme_location], 'nav_menu' );
-			$menu_items = wp_get_nav_menu_items($menu->term_id);
-			
-	 
-			$count = 0;
+		if($theme_location=='nav_menu' || $theme_location=='footer_menu'){
 			$submenu = false;
-			$menu_list = "<ul id=\"menu-header\" class=\"navbar-nav ml-auto\">\n";
-			
-			foreach( (array)$menu_items as $menu_item ) {
-				 
-				$link = $menu_item->url;
-				$title = $menu_item->title;
-				
-				// If the menu_item has a sub-menu
-				if ( $menu_item->ID == $menu_items[ $count + 1 ]->menu_item_parent) {
-					if ( !$submenu ) {
-						$submenu = true;
-						$menu_list .= "\t<li class=\"dropdown\">\n";
-						$menu_list .= "\t\t<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">$title <span class=\"caret\"></span></a>\n";
-						$menu_list .= "\t\t\t<ul class=\"dropdown-menu\">\n";
-						$menu_list .= "\t\t\t".'<li class="item"><a href="'.$link.'" class="title">'.$title.'</a></li>' ."\n";
-					}
-				}
-				
-				// If this is the last sub-menu item
-				else if ( $menu_item->menu_item_parent != $menu_items[ $count + 1 ]->menu_item_parent && $submenu ){
-					$menu_list .= "\t\t\t".'<li class="item"><a href="'.$link.'" class="title">'.$title.'</a></li>' ."\n";
-					$menu_list .= "\t\t".'</ul>'."\n\t".'</li>'."\n";
-					$submenu = false;
-				}
-				
-				// Otherwise a regular menu item
-				else {
-					$menu_list .= "\t\t\t<li><a href=\"$link\">$title</a></li>\n";
-				}
-				$count++;
-			}
-			$menu_list .= "\t\t</ul>\n";
-		}
-	// End Head Navigation Walker
-
-
-	// Start Footer Nav Walker
-		else if($theme_location=='footer_menu'){
-							$menu = get_term( $locations[$theme_location], 'nav_menu' );
-			$menu_items = wp_get_nav_menu_items($menu->term_id);
-	 
-			$count = 0;
-			$submenu = false;
-
-			foreach( (array)$menu_items as $menu_item ) {
-				 
-				$link = $menu_item->url;
-				$title = $menu_item->title;
-				
-				// If the menu_item is not part of a sub-menu
-				if ( !$menu_item->menu_item_parent ) {
-					$parent_id = $menu_item->ID;
-					$menu_list .= '<div class="col-xs-12 col-sm-4 col-md-3 col-lg-2 grid-item">'."\n";
-					$menu_list .= "\t".'<h4><a href="'.$link.'" class="title">'.$title.'</a></h4>' ."\n";
-				}
-	 
-				// If the menu_item is part of a sub-menu
-				else if ( $parent_id == $menu_item->menu_item_parent ) {
-					if ( !$submenu ) {
-						$submenu = true;
-						$menu_list .= "\t".'<nav>'."\n\t\t".'<ul class="list-unstyled">' ."\n";
-					}
-					$menu_list .= "\t\t\t".'<li class="item"><a href="'.$link.'" class="title">'.$title.'</a></li>' ."\n";
-					if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id && $submenu ){
-						$menu_list .= "\t\t".'</ul>'."\n\t".'</nav>'."\n";
-						$submenu = false;
-					}
-				}
-				
-				// If the menu_item is part of a sub-sub-menu
-				else {
-					$menu_list .= '<div style="display:none;">';
-				}
-				
-				
-				// This is the last menu_item of the current series
-				if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id ) { 
-					$menu_list .= '</div>' ."\n";      
-					$submenu = false;
-				}
-				$count++;
-			}
 		
+			$display = array(
+				'nav_menu' => array(
+					'clear_submenu' => "\t\t\t</ul>\n\t\t</li>\n",
+					'root_with_child' => "\t\t".'<li class="dropdown">'.
+						"\n\t\t\t".'<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">%title</a>'.
+						"\n\t\t\t".'<ul class="dropdown-menu">'.
+						"\n\t\t\t\t".'<li><a href="%url" title="%title">%title</a></li>'."\n",
+					'root_no_child' => "\t\t".'<li><a href="%url" title="%title">%title</a></li>'."\n",
+					'is_child' => "\t\t\t\t".'<li><a href="%url" title="%title">%title</a></li>'."\n",
+				),
+				'footer_menu' => array(
+					'clear_submenu' => "\t\t\t\t\t</ul>\n\t\t\t\t</nav>\n\t\t\t</div>\n",
+					'root_with_child' => "\t\t\t".'<div class="col-xs-12 col-sm-4 col-md-3 col-lg-2 grid-item">'."\n\t\t\t\t".'<h4><a href="%url" class="title" title="%title">%title</a></h4>'."\n\t\t\t\t<nav>\n\t\t\t\t\t".'<ul class="list-unstyled">' ."\n",
+					'root_no_child' => "\t\t\t".'<div class="col-xs-12 col-sm-4 col-md-3 col-lg-2 grid-item"><h4><a href="%url" class="title" title="%title">%title</a></h4></div>'."\n",
+					'is_child' => "\t\t\t\t\t\t".'<li class="item"><a href="%url" class="title" title="%title">%title</a></li>'."\n",
+				),
+			);
+			
+			foreach($menu_items as $key => $menu_item) {
+				$is_root = $menu_item->menu_item_parent == 0;
+				$has_child = isset($menu_items[$key+1]) && $menu_item->ID == $menu_items[$key+1]->menu_item_parent;
+
+				$data = array(
+					'%url' => $menu_item->url,
+					'%title' => $menu_item->title
+				);
+		
+				// If the menu_item is root
+				if( $is_root ){
+		
+					// If the last item was a dropdown, clear out dropdown menu
+					if( $submenu ){
+						$submenu = false;
+						$menu_list .= $display[$theme_location]['clear_submenu'];
+					}
+		
+					// If the menu_item has a child
+					if( $has_child ) {
+						$submenu = true;
+						$menu_list .= str_replace(array_keys($data), array_values($data), $display[$theme_location]["root_with_child"]);
+					}
+		
+					// If the menu_item does not have a child
+					else {
+						$menu_list .= str_replace(array_keys($data), array_values($data), $display[$theme_location]["root_no_child"]);
+					}
+				}
+		
+				// Otherwise the menu_item is a child
+				else {
+					$menu_list .= str_replace(array_keys($data), array_values($data), $display[$theme_location]["is_child"]);
+				}
+			}
 		}
-	// End Footer Nav Walke
 
 	} else {
-		$menu_list = '<!-- no menu defined in location "'.$theme_location.'" -->';
+		$menu_list = "<!-- no menu defined for $theme_location -->";
 	}
 	echo $menu_list;
 }
-
 
 ?>
