@@ -13,6 +13,7 @@ add_action('after_setup_theme', function(){
 	);
 });
 
+// Build the menus
 function clean_custom_menu( $theme_location ) {
 	if ( ($theme_location) && ($locations = get_nav_menu_locations()) && isset($locations[$theme_location]) ) {
 		$menu = get_term($locations[$theme_location]);

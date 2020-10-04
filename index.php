@@ -25,11 +25,11 @@
 	<script>
 		$(document).ready(function() {
 			var $grid = $('#grid').isotope({
-			itemSelector: '.grid-item',
-			percentPosition: true
+				itemSelector: '.grid-item',
+				percentPosition: true
 			});
 			$grid.imagesLoaded().progress(function() {
-			$grid.isotope('layout');
+				$grid.isotope('layout');
 			});
 		});
 	</script>

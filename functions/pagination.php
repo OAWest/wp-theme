@@ -3,7 +3,7 @@
  * Pagination
  */
 
-// Start Pagination
+// Index page pagination
 function bittersweet_pagination() {
 
     global $wp_query;
@@ -29,6 +29,5 @@ function bittersweet_pagination() {
         echo '</ul>';
     }
 }
-// End Pagination
 
 ?>

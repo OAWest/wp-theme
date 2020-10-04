@@ -1,4 +1,7 @@
 <?php
+/**!
+ * Add theme Support
+ */
 
 // Default Color Palette
 add_theme_support( 'editor-color-palette', array(
@@ -31,6 +34,9 @@ add_theme_support( 'editor-color-palette', array(
 
 // Add featured image support
 add_theme_support( 'post-thumbnails' );
+
+// Add <title> tag to the head
+add_theme_support( 'title-tag' );
 
 // Add custom background
 add_theme_support( 'custom-background', array(
