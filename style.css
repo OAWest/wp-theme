@@ -886,6 +886,20 @@ only screen and (min-resolution: 1.3dppx) {
 	width: 100%;
 	height: auto;
 }
+.block-editor__typewriter > div > .block-editor-writing-flow > div .wp-block {
+    max-width: 100%;
+}
+.block-editor__typewriter > div > .block-editor-writing-flow > div .card {
+	padding: 0px;
+}
+.block-editor__typewriter > div > .block-editor-writing-flow > div .card-footer {
+	background: #fff;
+	padding: 6px 24px;
+	text-transform: uppercase;
+	color: #999;
+	font-weight: 400;
+	font-size: 11px;
+}
 
 /**
  * Home page
