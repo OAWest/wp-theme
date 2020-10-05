@@ -20,7 +20,7 @@ function clean_custom_menu( $theme_location ) {
 		$menu_items = wp_get_nav_menu_items($menu->term_id);
 		$menu_list = '';
 
-		if($theme_location=='nav_menu' || $theme_location=='footer_menu'){
+		if($menu_items && ($theme_location=='nav_menu' || $theme_location=='footer_menu')){
 			$submenu = false;
 		
 			$display = array(
@@ -75,6 +75,12 @@ function clean_custom_menu( $theme_location ) {
 				else {
 					$menu_list .= str_replace(array_keys($data), array_values($data), $display[$theme_location]["is_child"]);
 				}
+			}
+
+			// If the last item was a dropdown, clear out dropdown menu
+			if( $submenu ){
+				$submenu = false;
+				$menu_list .= $display[$theme_location]['clear_submenu'];
 			}
 		}
 
