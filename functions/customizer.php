@@ -116,10 +116,8 @@ add_action( 'customize_register', function($wp_customize){
 
 // Add styles to the editor
 add_theme_support( 'editor-styles' );
-add_action('admin_init', function(){
-	add_editor_style( 'assets/css/bootstrap.min.css' );
-	add_editor_style( 'assets/css//fontawesome.min.css' );
-	add_editor_style( 'style.css' );
+add_action('after_setup_theme', function(){
+	add_editor_style( ['assets/css/bootstrap.min.css', 'assets/css//fontawesome.min.css', 'style.css'] );
 });
 
 // Add JavaScript and CSS files
